@@ -2,20 +2,54 @@ package com.salesSubsystem.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "BusinessPartner")
 public class BusinessPartner {
 
-	private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
+	
+	@Column(name = "namePartner")
 	private String namePartner;
+	
+	@Column(name = "address")
 	private String address;
+	
+	@Column(name = "contact")
 	private String contact;
+	
+	@Column(name = "eMail")
 	private String eMail;
+	
+	@Column(name = "PIB")
 	private long PIB;
+	
+	@Column(name = "MIB")
 	private long MIB;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "companyId", referencedColumnName = "id")
 	private Company company;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessPartner")
 	private List<OutputInvoice> outputInvoices;
 	
 	
-	public BusinessPartner(long id, String namePartner, String address, String contact, String eMail, 
+	public BusinessPartner(Long id, String namePartner, String address, String contact, String eMail, 
 							long pIB, long mIB, Company company, List<OutputInvoice> outputInvoices) {
 		this.id = id;
 		this.namePartner = namePartner;
@@ -38,7 +72,7 @@ public class BusinessPartner {
 	}
 
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

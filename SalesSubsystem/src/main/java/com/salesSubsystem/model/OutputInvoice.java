@@ -3,23 +3,65 @@ package com.salesSubsystem.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "OutputInvoice")
 public class OutputInvoice {
 
-	private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
+	
+	@Column(name = "numberAccount")
 	private int numberAccount;
+	
+	@Column(name = "releaseDate")
 	private Date releaseDate;
+	
+	@Column(name = "valueDate")
 	private Date valueDate;
+	
+	@Column(name = "totalBase")
 	private double totalBase;
+	
+	@Column(name = "totalPDV")
 	private double totalPDV;
+	
+	@Column(name = "totalPayment")
 	private double totalPayment;
+	
+	@Column(name = "status")
 	private Status status;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "companyId", referencedColumnName = "id")
 	private Company company;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "outputInvoice")
 	private List<InvoiceItem> invoiceItems;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "businessYearId", referencedColumnName = "id")
 	private BusinessYear businessYear;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "businessPartnerId", referencedColumnName = "id")
 	private BusinessPartner businessPartner;
 	
 	
-	public OutputInvoice(long id, int numberAccount, Date releaseDate, Date valueDate, double totalBase,
+	public OutputInvoice(Long id, int numberAccount, Date releaseDate, Date valueDate, double totalBase,
 			double totalPDV, double totalPayment, Status status, Company company, 
 			List<InvoiceItem> invoiceItems, BusinessYear businessYear, BusinessPartner businessPartner) {
 		this.id = id;
@@ -47,7 +89,7 @@ public class OutputInvoice {
 	}
 
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

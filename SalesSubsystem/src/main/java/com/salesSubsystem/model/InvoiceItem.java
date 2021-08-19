@@ -1,21 +1,58 @@
 package com.salesSubsystem.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "InvoiceItem")
 public class InvoiceItem {
 
-	private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
+	
+	@Column(name = "serialNumbAccItem")
 	private int serialNumbAccItem;
+	
+	@Column(name = "amount")
 	private double amount;
+	
+	@Column(name = "discount")
 	private double discount;
+	
+	@Column(name = "unitPrice")
 	private double unitPrice;
+	
+	@Column(name = "base")
 	private double base;
+	
+	@Column(name = "percentagePDV")
 	private double percentagePDV;
+	
+	@Column(name = "amountPDV")
 	private double amountPDV;
+	
+	@Column(name = "total")
 	private double total;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "articleId", referencedColumnName = "id")
 	private Article article;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "outputInvoiceId", referencedColumnName = "id")
 	private OutputInvoice outputInvoice;
 	
 	
-	public InvoiceItem(long id, int serialNumbAccItem, double amount, double discount, double unitPrice, double base,
+	public InvoiceItem(Long id, int serialNumbAccItem, double amount, double discount, double unitPrice, double base,
 			double percentagePDV, double amountPDV, double total, Article article, OutputInvoice outputInvoice) {
 		this.id = id;
 		this.serialNumbAccItem = serialNumbAccItem;
@@ -41,7 +78,7 @@ public class InvoiceItem {
 	}
 
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

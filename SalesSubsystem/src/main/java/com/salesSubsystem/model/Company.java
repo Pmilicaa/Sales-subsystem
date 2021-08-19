@@ -2,21 +2,56 @@ package com.salesSubsystem.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Company")
 public class Company {
 
-	private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
+	
+	@Column(name = "address")
 	private String address;
+	
+	@Column(name = "contact")
 	private String contact;
+	
+	@Column(name = "PIB")
 	private long PIB;
+	
+	@Column(name = "MIB")
 	private long MIB;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<BusinessYear> businessYears;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<BusinessPartner> businessPartners;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<PriceList> priceLists;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<Article> articles;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<ArticleGroup> articleGroups;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<OutputInvoice> outputInvoices;
 	
-	public Company(long id, String address, String contact, long pIB, long mIB, 
+	public Company(Long id, String address, String contact, long pIB, long mIB, 
 					List<BusinessYear> businessYears, List<BusinessPartner> businessPartners, 
 					List<PriceList> priceLists, List<Article> articles, List<ArticleGroup> articleGroups, List<OutputInvoice> outputInvoices) {
 		this.id = id;
@@ -39,7 +74,7 @@ public class Company {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
