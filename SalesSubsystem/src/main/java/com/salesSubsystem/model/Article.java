@@ -36,7 +36,9 @@ public class Article {
 	@Transient
 	private List<InvoiceItem> invoiceItems;
 
-	public Article(long id, String name, String description, UnitOfMeasure unitOfMeasure, List<PriceList> priceLists, ArticleGroup articleGroup, List<InvoiceItem> invoiceItems) {
+	@Column(name="active")
+	private boolean active;
+	public Article(long id, String name, String description, UnitOfMeasure unitOfMeasure, List<PriceList> priceLists, ArticleGroup articleGroup, List<InvoiceItem> invoiceItems, boolean active) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -44,6 +46,7 @@ public class Article {
 		this.priceLists = priceLists;
 		this.articleGroup = articleGroup;
 		this.invoiceItems = invoiceItems;
+		this.active = active;
 	}
 
 	public Article() {
@@ -92,4 +95,6 @@ public class Article {
 	public void setInvoiceItems(List<InvoiceItem> invoiceItems) {
 		this.invoiceItems = invoiceItems;
 	}
+	public boolean isActive() {return active;}
+	public void setActive(boolean active) {this.active = active;}
 }
