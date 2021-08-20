@@ -3,12 +3,15 @@ package com.salesSubsystem.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.salesSubsystem.model.BusinessPartner;
 import com.salesSubsystem.model.OutputInvoice;
 import com.salesSubsystem.repository.BusinessPartnerRepository;
 import com.salesSubsystem.repository.OutputInvoiceRepository;
 
+
+@Service
 public class OutputInvoiceService {
 
 	@Autowired

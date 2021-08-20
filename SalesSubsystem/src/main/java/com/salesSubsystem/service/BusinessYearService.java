@@ -3,10 +3,12 @@ package com.salesSubsystem.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.salesSubsystem.model.BusinessYear;
 import com.salesSubsystem.repository.BusinessYearRepository;
 
+@Service
 public class BusinessYearService {
 
 	@Autowired
