@@ -29,6 +29,9 @@ public class BusinessYear {
 	@Column(name = "locked")
 	private boolean locked;
 	
+	@Column(name = "active")
+	private boolean active = true;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "companyId", referencedColumnName = "id")
 	private Company company;
@@ -36,10 +39,11 @@ public class BusinessYear {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessYear")
 	private List<OutputInvoice> outputInvoices;
 	
-	public BusinessYear(Long id, int year, boolean locked, Company company, List<OutputInvoice> outputInvoices) {
+	public BusinessYear(Long id, int year, boolean locked, boolean active, Company company, List<OutputInvoice> outputInvoices) {
 		this.id = id;
 		this.year = year;
 		this.locked = locked;
+		this.active = active;
 		this.company = company;
 		this.outputInvoices = outputInvoices;
 	}
@@ -88,5 +92,13 @@ public class BusinessYear {
 		this.outputInvoices = outputInvoices;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
 }
 

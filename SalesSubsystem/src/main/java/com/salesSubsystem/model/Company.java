@@ -33,6 +33,9 @@ public class Company {
 	@Column(name = "MIB")
 	private long MIB;
 	
+	@Column(name = "active")
+	private boolean active = true;
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<BusinessYear> businessYears;
 	
@@ -51,7 +54,7 @@ public class Company {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
 	private List<OutputInvoice> outputInvoices;
 	
-	public Company(Long id, String address, String contact, long pIB, long mIB, 
+	public Company(Long id, String address, String contact, long pIB, long mIB, boolean active,
 					List<BusinessYear> businessYears, List<BusinessPartner> businessPartners, 
 					List<PriceList> priceLists, List<Article> articles, List<ArticleGroup> articleGroups, List<OutputInvoice> outputInvoices) {
 		this.id = id;
@@ -59,6 +62,7 @@ public class Company {
 		this.contact = contact;
 		PIB = pIB;
 		MIB = mIB;
+		this.active = active;
 		this.businessYears = businessYears;
 		this.businessPartners = businessPartners;
 		this.priceLists = priceLists;
@@ -157,7 +161,14 @@ public class Company {
 	public void setOutputInvoices(List<OutputInvoice> outputInvoices) {
 		this.outputInvoices = outputInvoices;
 	}
-	
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	
 }
 

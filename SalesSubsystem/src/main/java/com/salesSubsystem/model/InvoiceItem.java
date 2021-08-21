@@ -43,6 +43,9 @@ public class InvoiceItem {
 	@Column(name = "total")
 	private double total;
 	
+	@Column(name = "active")
+	private boolean active = true;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "articleId", referencedColumnName = "id")
 	private Article article;
@@ -53,7 +56,7 @@ public class InvoiceItem {
 	
 	
 	public InvoiceItem(Long id, int serialNumbAccItem, double amount, double discount, double unitPrice, double base,
-			double percentagePDV, double amountPDV, double total, Article article, OutputInvoice outputInvoice) {
+			double percentagePDV, double amountPDV, double total, boolean active, Article article, OutputInvoice outputInvoice) {
 		this.id = id;
 		this.serialNumbAccItem = serialNumbAccItem;
 		this.amount = amount;
@@ -63,6 +66,7 @@ public class InvoiceItem {
 		this.percentagePDV = percentagePDV;
 		this.amountPDV = amountPDV;
 		this.total = total;
+		this.active = active;
 		this.article = article;
 		this.outputInvoice = outputInvoice;
 	}
@@ -182,5 +186,15 @@ public class InvoiceItem {
 		this.outputInvoice = outputInvoice;
 	}
 
+
+	public boolean isActive() {
+		return active;
+	}
+
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
 }
 

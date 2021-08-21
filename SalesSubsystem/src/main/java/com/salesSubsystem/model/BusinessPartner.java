@@ -41,6 +41,9 @@ public class BusinessPartner {
 	@Column(name = "MIB")
 	private long MIB;
 	
+	@Column(name = "active")
+	private boolean active = true;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "companyId", referencedColumnName = "id")
 	private Company company;
@@ -50,7 +53,7 @@ public class BusinessPartner {
 	
 	
 	public BusinessPartner(Long id, String namePartner, String address, String contact, String eMail, 
-							long pIB, long mIB, Company company, List<OutputInvoice> outputInvoices) {
+							long pIB, long mIB, boolean active, Company company, List<OutputInvoice> outputInvoices) {
 		this.id = id;
 		this.namePartner = namePartner;
 		this.address = address;
@@ -58,6 +61,7 @@ public class BusinessPartner {
 		this.eMail = eMail;
 		PIB = pIB;
 		MIB = mIB;
+		this.active = active;
 		this.company = company;
 		this.outputInvoices = outputInvoices;
 	}
@@ -154,6 +158,16 @@ public class BusinessPartner {
 
 	public void setOutputInvoices(List<OutputInvoice> outputInvoices) {
 		this.outputInvoices = outputInvoices;
+	}
+
+
+	public boolean isActive() {
+		return active;
+	}
+
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	

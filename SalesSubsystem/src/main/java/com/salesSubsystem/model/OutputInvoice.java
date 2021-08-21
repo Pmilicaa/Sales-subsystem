@@ -42,6 +42,9 @@ public class OutputInvoice {
 	@Column(name = "totalPayment")
 	private double totalPayment;
 	
+	@Column(name = "active")
+	private boolean active = true;
+	
 	@Column(name = "status")
 	private Status status;
 	
@@ -62,7 +65,7 @@ public class OutputInvoice {
 	
 	
 	public OutputInvoice(Long id, int numberAccount, Date releaseDate, Date valueDate, double totalBase,
-			double totalPDV, double totalPayment, Status status, Company company, 
+			double totalPDV, double totalPayment, boolean active, Status status, Company company, 
 			List<InvoiceItem> invoiceItems, BusinessYear businessYear, BusinessPartner businessPartner) {
 		this.id = id;
 		this.numberAccount = numberAccount;
@@ -71,6 +74,7 @@ public class OutputInvoice {
 		this.totalBase = totalBase;
 		this.totalPDV = totalPDV;
 		this.totalPayment = totalPayment;
+		this.active = active;
 		this.status = status;
 		this.company = company;
 		this.invoiceItems = invoiceItems;
@@ -201,6 +205,16 @@ public class OutputInvoice {
 
 	public void setBusinessPartner(BusinessPartner businessPartner) {
 		this.businessPartner = businessPartner;
+	}
+
+
+	public boolean isActive() {
+		return active;
+	}
+
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 }
