@@ -29,7 +29,8 @@ public class ArticleGroup {
 	)
 	private List<PDV> pdvs;
 
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "company_article_group", referencedColumnName = "id", nullable = false)
 	private Company company;
 
 	public ArticleGroup(long id, String name, List<Article> articles, List<PDV> pdvs, Company company) {

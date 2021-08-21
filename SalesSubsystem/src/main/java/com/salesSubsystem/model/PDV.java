@@ -19,14 +19,11 @@ public class PDV {
 	@Column(name="pdv_assessment")
 	private double pdvAssessment;
 
-	@OneToMany(
-			mappedBy = "id",
-			fetch = FetchType.LAZY,
-			cascade = CascadeType.ALL
-	)
-	private List<ArticleGroup> articleGroups;
+	@ManyToOne
+	@JoinColumn(name = "article_group_pdv", referencedColumnName = "id", nullable = false)
+	private ArticleGroup articleGroups;
 
-	public PDV(long id, Date validFrom, double pdvAssessment, List<ArticleGroup> articleGroups) {
+	public PDV(long id, Date validFrom, double pdvAssessment, ArticleGroup articleGroups) {
 		this.id = id;
 		this.validFrom = validFrom;
 		this.pdvAssessment = pdvAssessment;
@@ -41,10 +38,10 @@ public class PDV {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public List<ArticleGroup> getArticleGroups() {
+	public ArticleGroup getArticleGroups() {
 		return articleGroups;
 	}
-	public void setArticleGroups(List<ArticleGroup> articleGroups) {
+	public void setArticleGroups(ArticleGroup articleGroups) {
 		this.articleGroups = articleGroups;
 	}
 	public Date getValidFrom() {

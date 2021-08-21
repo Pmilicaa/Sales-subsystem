@@ -18,11 +18,12 @@ public class PriceList {
 	@Column(name="price_per_unit")
 	private double pricePerUnit;
 
-	@OneToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name="article_id", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "article_price", referencedColumnName = "id", nullable = false)
 	private Article article;
 
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "company_price", referencedColumnName = "id", nullable = false)
 	private Company company;
 
 	public PriceList(long id, Date validFrom, double pricePerUnit, Article article, Company company) {

@@ -18,8 +18,8 @@ public class Article {
 	@Column(name="description")
 	private String description;
 
-	@OneToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name="unit_of_measure_id", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "unit_of_measure_article", referencedColumnName = "id", nullable = false)
 	private UnitOfMeasure unitOfMeasure;
 
 	@OneToMany(
@@ -29,16 +29,25 @@ public class Article {
 	)
 	private List<PriceList> priceLists;
 
-	@OneToOne(optional = false, cascade = CascadeType.ALL)
-	@JoinColumn(name="article_group_id", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "article_group_article", referencedColumnName = "id", nullable = false)
 	private ArticleGroup articleGroup;
 
-	@Transient
+	@OneToMany(
+			mappedBy = "id",
+			fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL
+	)
 	private List<InvoiceItem> invoiceItems;
+
+	@ManyToOne
+	@JoinColumn(name = "company_article", referencedColumnName = "id", nullable = false)
+	private Company company;
 
 	@Column(name="active")
 	private boolean active;
-	public Article(long id, String name, String description, UnitOfMeasure unitOfMeasure, List<PriceList> priceLists, ArticleGroup articleGroup, List<InvoiceItem> invoiceItems, boolean active) {
+
+	public Article(long id, String name, String description, UnitOfMeasure unitOfMeasure, List<PriceList> priceLists, ArticleGroup articleGroup, List<InvoiceItem> invoiceItems, Company company, boolean active) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -46,6 +55,7 @@ public class Article {
 		this.priceLists = priceLists;
 		this.articleGroup = articleGroup;
 		this.invoiceItems = invoiceItems;
+		this.company = company;
 		this.active = active;
 	}
 
@@ -95,6 +105,8 @@ public class Article {
 	public void setInvoiceItems(List<InvoiceItem> invoiceItems) {
 		this.invoiceItems = invoiceItems;
 	}
+	public Company getCompany() {return company;}
+	public void setCompany(Company company) {this.company = company;}
 	public boolean isActive() {return active;}
 	public void setActive(boolean active) {this.active = active;}
 }
