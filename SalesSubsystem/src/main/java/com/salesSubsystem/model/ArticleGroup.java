@@ -29,7 +29,7 @@ public class ArticleGroup {
 	)
 	private List<PDV> pdvs;
 
-	@ManyToOne
+	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "company_article_group", referencedColumnName = "id", nullable = false)
 	private Company company;
 

@@ -1,6 +1,7 @@
 package com.salesSubsystem.controller;
 
 import com.salesSubsystem.model.Article;
+import com.salesSubsystem.model.PriceList;
 import com.salesSubsystem.repository.ArticleRepository;
 import com.salesSubsystem.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 public class ArticleController {
@@ -32,6 +32,12 @@ public class ArticleController {
         }
         return new ResponseEntity<Article>(HttpStatus.NOT_FOUND);
 
+    }
+    @PostMapping(path="/articles")
+    public ResponseEntity<Article> addArticle(@RequestBody Article article){
+        Article newArticle = new Article(article.getName(), article.getDescription(), article.getUnitOfMeasure(), article.getPriceLists(), article.getArticleGroup(),
+                article.getInvoiceItems(), article.getCompany());
+        return new ResponseEntity<Article>(articleService.saveArticle(newArticle), HttpStatus.OK);
     }
     @DeleteMapping(path="/articles/{id}")
     public ResponseEntity<Void> deleteArticle(@PathVariable("id") Long id ){

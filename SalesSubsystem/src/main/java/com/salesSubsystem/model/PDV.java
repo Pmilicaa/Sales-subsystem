@@ -19,7 +19,7 @@ public class PDV {
 	@Column(name="pdv_assessment")
 	private double pdvAssessment;
 
-	@ManyToOne
+	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "article_group_pdv", referencedColumnName = "id", nullable = false)
 	private ArticleGroup articleGroups;
 

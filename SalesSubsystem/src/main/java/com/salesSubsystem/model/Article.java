@@ -18,7 +18,7 @@ public class Article {
 	@Column(name="description")
 	private String description;
 
-	@ManyToOne
+	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "unit_of_measure_article", referencedColumnName = "id", nullable = false)
 	private UnitOfMeasure unitOfMeasure;
 
@@ -29,7 +29,7 @@ public class Article {
 	)
 	private List<PriceList> priceLists;
 
-	@ManyToOne
+	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "article_group_article", referencedColumnName = "id", nullable = false)
 	private ArticleGroup articleGroup;
 
@@ -40,7 +40,7 @@ public class Article {
 	)
 	private List<InvoiceItem> invoiceItems;
 
-	@ManyToOne
+	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "company_article", referencedColumnName = "id", nullable = false)
 	private Company company;
 
@@ -57,6 +57,17 @@ public class Article {
 		this.invoiceItems = invoiceItems;
 		this.company = company;
 		this.active = active;
+	}
+
+	public Article(String name, String description, UnitOfMeasure unitOfMeasure, List<PriceList> priceLists, ArticleGroup articleGroup, List<InvoiceItem> invoiceItems, Company company) {
+		this.name = name;
+		this.description = description;
+		this.unitOfMeasure = unitOfMeasure;
+		this.priceLists = priceLists;
+		this.articleGroup = articleGroup;
+		this.invoiceItems = invoiceItems;
+		this.company = company;
+		this.active = true;
 	}
 
 	public Article() {
