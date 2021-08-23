@@ -23,7 +23,7 @@ public class Article {
 
 	@ManyToOne(cascade= CascadeType.MERGE)
 	@JoinColumn(name = "unit_of_measure_article", referencedColumnName = "id", nullable = false)
-	@JsonBackReference(value="unitOfMeasure_article")
+	@JsonManagedReference(value="unitOfMeasure_article")
 	private UnitOfMeasure unitOfMeasure;
 
 	@OneToMany(
@@ -36,7 +36,7 @@ public class Article {
 
 	@ManyToOne(cascade= CascadeType.MERGE)
 	@JoinColumn(name = "article_group_article", referencedColumnName = "id", nullable = false)
-	@JsonBackReference(value="articleGroup_article")
+	@JsonManagedReference(value="articleGroup_article")
 	private ArticleGroup articleGroup;
 
 	@OneToMany(
@@ -49,7 +49,7 @@ public class Article {
 
 	@ManyToOne(cascade= CascadeType.MERGE)
 	@JoinColumn(name = "company_article", referencedColumnName = "id", nullable = false)
-	@JsonBackReference(value="company_article")
+	@JsonManagedReference(value="company_article")
 	private Company company;
 
 	@Column(name="active")

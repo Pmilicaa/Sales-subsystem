@@ -26,7 +26,7 @@ public class UnitOfMeasure {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
-    @JsonManagedReference(value="unitOfMeasure_article")
+    @JsonBackReference(value="unitOfMeasure_article")
     private List<Article> articles;
 
     public UnitOfMeasure(long id, String name, String shortName, List<Article> articles) {

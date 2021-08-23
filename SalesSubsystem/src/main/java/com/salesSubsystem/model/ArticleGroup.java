@@ -23,7 +23,7 @@ public class ArticleGroup {
 			fetch = FetchType.LAZY,
 			cascade = CascadeType.ALL
 	)
-	@JsonManagedReference(value="articleGroup_article")
+	@JsonBackReference(value="articleGroup_article")
 	private List<Article> articles;
 
 	@OneToMany(

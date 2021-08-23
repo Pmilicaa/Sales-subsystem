@@ -1,5 +1,6 @@
 package com.salesSubsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
@@ -51,7 +52,7 @@ public class Company {
 	private List<PriceList> priceLists;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
-	@JsonManagedReference(value="company_article")
+	@JsonBackReference(value="company_article")
 	private List<Article> articles;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
