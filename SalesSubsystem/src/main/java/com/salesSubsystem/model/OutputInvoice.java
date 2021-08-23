@@ -1,5 +1,8 @@
 package com.salesSubsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 import java.util.List;
 
@@ -50,17 +53,21 @@ public class OutputInvoice {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "companyId", referencedColumnName = "id")
+	@JsonBackReference(value="company_outputInvoice")
 	private Company company;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "outputInvoice")
+	@JsonManagedReference(value="invoiceItems_outputInvoice")
 	private List<InvoiceItem> invoiceItems;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "businessYearId", referencedColumnName = "id")
+	@JsonBackReference(value="outputInvoices_businessYears")
 	private BusinessYear businessYear;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "businessPartnerId", referencedColumnName = "id")
+	@JsonBackReference(value="outputInvoices_businessPartner")
 	private BusinessPartner businessPartner;
 	
 	

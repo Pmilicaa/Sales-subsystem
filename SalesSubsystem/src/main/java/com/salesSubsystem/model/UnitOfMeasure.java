@@ -1,5 +1,8 @@
 package com.salesSubsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -23,6 +26,7 @@ public class UnitOfMeasure {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
+    @JsonManagedReference(value="unitOfMeasure_article")
     private List<Article> articles;
 
     public UnitOfMeasure(long id, String name, String shortName, List<Article> articles) {

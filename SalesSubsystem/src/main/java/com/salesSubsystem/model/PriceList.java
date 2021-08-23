@@ -1,5 +1,7 @@
 package com.salesSubsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -20,10 +22,12 @@ public class PriceList {
 
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "article_price", referencedColumnName = "id", nullable = false)
+	@JsonBackReference(value="price_article")
 	private Article article;
 
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "company_price", referencedColumnName = "id", nullable = false)
+	@JsonBackReference(value="price_company")
 	private Company company;
 
 	public PriceList(long id, Date validFrom, double pricePerUnit, Article article, Company company) {

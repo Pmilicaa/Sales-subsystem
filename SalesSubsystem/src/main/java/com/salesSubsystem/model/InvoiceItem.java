@@ -1,5 +1,7 @@
 package com.salesSubsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,10 +50,12 @@ public class InvoiceItem {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "articleId", referencedColumnName = "id")
+	@JsonBackReference(value="invoiceItems_article")
 	private Article article;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "outputInvoiceId", referencedColumnName = "id")
+	@JsonBackReference(value="invoiceItems_outputInvoice")
 	private OutputInvoice outputInvoice;
 	
 	

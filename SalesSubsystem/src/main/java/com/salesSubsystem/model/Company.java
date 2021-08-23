@@ -1,5 +1,7 @@
 package com.salesSubsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,7 +22,7 @@ public class Company {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	
+
 	@Column(name = "address")
 	private String address;
 	
@@ -37,21 +39,27 @@ public class Company {
 	private boolean active = true;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+	@JsonManagedReference(value="company_businessYears")
 	private List<BusinessYear> businessYears;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+	@JsonManagedReference(value="company_businessPartners")
 	private List<BusinessPartner> businessPartners;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+	@JsonManagedReference(value="price_company")
 	private List<PriceList> priceLists;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+	@JsonManagedReference(value="company_article")
 	private List<Article> articles;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+	@JsonManagedReference(value="company_article_group")
 	private List<ArticleGroup> articleGroups;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+	@JsonManagedReference(value="company_outputInvoice")
 	private List<OutputInvoice> outputInvoices;
 	
 	public Company(Long id, String address, String contact, long pIB, long mIB, boolean active,

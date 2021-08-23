@@ -1,5 +1,7 @@
 package com.salesSubsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +23,7 @@ public class PDV {
 
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "article_group_pdv", referencedColumnName = "id", nullable = false)
+	@JsonBackReference
 	private ArticleGroup articleGroups;
 
 	public PDV(long id, Date validFrom, double pdvAssessment, ArticleGroup articleGroups) {

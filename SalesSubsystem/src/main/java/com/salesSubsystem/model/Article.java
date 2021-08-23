@@ -1,5 +1,8 @@
 package com.salesSubsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,30 +21,35 @@ public class Article {
 	@Column(name="description")
 	private String description;
 
-	@ManyToOne(cascade= CascadeType.ALL)
+	@ManyToOne(cascade= CascadeType.MERGE)
 	@JoinColumn(name = "unit_of_measure_article", referencedColumnName = "id", nullable = false)
+	@JsonBackReference(value="unitOfMeasure_article")
 	private UnitOfMeasure unitOfMeasure;
 
 	@OneToMany(
 			mappedBy = "id",
 			fetch = FetchType.LAZY,
-			cascade = CascadeType.ALL
+			cascade = CascadeType.MERGE
 	)
+	@JsonManagedReference(value="price_article")
 	private List<PriceList> priceLists;
 
-	@ManyToOne(cascade= CascadeType.ALL)
+	@ManyToOne(cascade= CascadeType.MERGE)
 	@JoinColumn(name = "article_group_article", referencedColumnName = "id", nullable = false)
+	@JsonBackReference(value="articleGroup_article")
 	private ArticleGroup articleGroup;
 
 	@OneToMany(
 			mappedBy = "id",
 			fetch = FetchType.LAZY,
-			cascade = CascadeType.ALL
+			cascade = CascadeType.MERGE
 	)
+	@JsonManagedReference(value="invoiceItems_article")
 	private List<InvoiceItem> invoiceItems;
 
-	@ManyToOne(cascade= CascadeType.ALL)
+	@ManyToOne(cascade= CascadeType.MERGE)
 	@JoinColumn(name = "company_article", referencedColumnName = "id", nullable = false)
+	@JsonBackReference(value="company_article")
 	private Company company;
 
 	@Column(name="active")
