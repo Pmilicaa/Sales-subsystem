@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- CSS only -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="js/AddArticle.js" type="module"></script>
+
+    <title>Add article</title>
+</head>
+<body>
+<h1 class="text-center">Add article</h1>
+<form style="margin-left: 30em!important">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputName">Name</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Name">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputDesc">Description</label>
+            <input type="text" class="form-control" id="inputDesc" placeholder="Description">
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="inputPrice">Price</label>
+        <input type="text" class="form-control" id="inputPrice" placeholder="Price">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputUnitOfState">Unit of Measure</label>
+            <select id="inputUnitOfState" class="form-control">
+
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputArticleGroup">Article group</label>
+            <select id="inputArticleGroup" class="form-control">
+
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputCompany">Company</label>
+            <select id="inputCompany" class="form-control">
+
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3" id="addArticle">Add</button>
+</form>
+
+</body>
+</html>
