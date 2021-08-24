@@ -20,4 +20,8 @@ public class PriceListService {
     public List<PriceList> getAllPriceLists(){
         return priceListRepository.findAll();
     }
+    
+    public PriceList savePriceList(PriceList priceList) {
+    	return priceListRepository.save(priceList);
+    }
 }
