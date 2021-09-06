@@ -37,12 +37,12 @@ public class PriceListController {
     }
 
     @GetMapping(path="/priceLists/{id}")
-    private ResponseEntity<PriceList> getPriceList(Long id){
-        Optional<PriceList> pl = priceListRepository.findById(id);
+    private ResponseEntity<PriceList> getPriceList(@PathVariable("id") Long id){
+        PriceList pl = priceListService.getPriceList(id);
         if(pl == null){
             return new ResponseEntity<PriceList>(HttpStatus.NOT_FOUND);
         }
-        return  new ResponseEntity<PriceList>(pl.get(), HttpStatus.OK);
+        return  new ResponseEntity<PriceList>(pl, HttpStatus.OK);
     }
     
     @PostMapping(path="/articles/{articleId}/priceListes", consumes = "application/json")
