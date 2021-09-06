@@ -1,4 +1,4 @@
-package com.salesSubsystem.model;
+ package com.salesSubsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -21,12 +21,12 @@ public class PriceList {
 	private double pricePerUnit;
 
 	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "article_price", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "article_price", referencedColumnName = "id", nullable = true)
 	@JsonBackReference(value="price_article")
 	private Article article;
 
 	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "company_price", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "company_price", referencedColumnName = "id", nullable = true)
 	@JsonBackReference(value="price_company")
 	private Company company;
 
