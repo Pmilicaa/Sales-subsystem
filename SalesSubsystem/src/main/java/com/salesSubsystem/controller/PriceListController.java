@@ -32,7 +32,7 @@ public class PriceListController {
     }
 
     @GetMapping(path="/priceLists/{id}")
-    private ResponseEntity<PriceList> getPriceList(Long id){
+    private ResponseEntity<PriceList> getPriceList(@PathVariable Long id){
         PriceList pl = priceListService.getPriceList(id);
         if(pl == null){
             return new ResponseEntity<PriceList>(HttpStatus.NOT_FOUND);
