@@ -20,6 +20,7 @@ public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
 
+    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     @GetMapping(path="/articles")
     public @ResponseBody ResponseEntity<List<Article>> getAllArticles(){
         return new ResponseEntity<List<Article>>(articleService.getAllArticles(), HttpStatus.OK);

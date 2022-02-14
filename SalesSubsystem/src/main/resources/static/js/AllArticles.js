@@ -3,8 +3,7 @@ $(document).ready(function(){
 
     getArticles(function(retVal){
         retVal.forEach(function(article){
-            appendArticle(article);
-            console.log(article);
+            appendArticle(article);            console.log(article);
         });
     });
 
