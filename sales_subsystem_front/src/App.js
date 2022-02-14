@@ -1,12 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import TopNavbar from './components/TopNavbar';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <TopNavbar></TopNavbar>
-    </div>
+     <BrowserRouter>
+     <Routes>
+       <Route path="/" element={<TopNavbar />}/>
+       <Route path="/articles"/>
+       <Route path="/companies"/>
+       <Route path="/invoices"/>
+     </Routes>
+   </BrowserRouter>
   );
 }
 
