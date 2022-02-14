@@ -5,14 +5,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
+    <TopNavbar>
      <BrowserRouter>
      <Routes>
-       <Route path="/" element={<TopNavbar />}/>
+       <Route path="/" />
        <Route path="/articles"/>
        <Route path="/companies"/>
        <Route path="/invoices"/>
      </Routes>
    </BrowserRouter>
+   </TopNavbar>
   );
 }
 
