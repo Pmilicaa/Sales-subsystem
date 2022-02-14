@@ -6,10 +6,10 @@ const TopNavbar = () => {
     <Navbar bg="light" expand="lg">
       <Container>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Business partners</Nav.Link>
-            <Nav.Link href="#link">Article groups</Nav.Link>
-            <Nav.Link href="#link">Companies</Nav.Link>
-            <Nav.Link href="#link">Invoices</Nav.Link>
+            <Nav.Link href="/business">Business partners</Nav.Link>
+            <Nav.Link href="/articles">Article groups</Nav.Link>
+            <Nav.Link href="/companies">Companies</Nav.Link>
+            <Nav.Link href="/invoices">Invoices</Nav.Link>
           </Nav>
       </Container>
     </Navbar>
