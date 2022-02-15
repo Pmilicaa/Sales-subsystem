@@ -1,17 +1,13 @@
 package com.salesSubsystem.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name="unitOfMeasure")
 public class UnitOfMeasure {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
 
@@ -21,20 +17,11 @@ public class UnitOfMeasure {
     @Column(name="shortName")
     private String shortName;
 
-    @OneToMany(
-            mappedBy = "id",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
-    )
-    @JsonBackReference(value="unitOfMeasure_article")
-    private List<Article> articles;
-
-    public UnitOfMeasure(long id, String name, String shortName, List<Article> articles) {
+    public UnitOfMeasure(long id, String name, String shortName) {
         super();
         this.id = id;
         this.name = name;
         this.shortName = shortName;
-        this.articles = articles;
     }
 
     public UnitOfMeasure() {
@@ -59,6 +46,4 @@ public class UnitOfMeasure {
     public void setShortName(String shortName) {
         this.shortName = shortName;
     }
-    public List<Article> getArticles() {return articles;}
-    public void setArticles(List<Article> articles) {this.articles = articles;}
 }

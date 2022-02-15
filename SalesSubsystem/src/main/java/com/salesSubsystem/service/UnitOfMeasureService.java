@@ -16,8 +16,17 @@ public class UnitOfMeasureService {
     public List<UnitOfMeasure> getAllUnitOfMeasures(){
         return unitOfMeasureRepository.findAll();
     }
+
     public UnitOfMeasure getUnitOfMeasure(Long id){
         UnitOfMeasure unitOfMeasure = unitOfMeasureRepository.findById(id).orElseThrow(NullPointerException::new);
         return unitOfMeasure;
+    }
+
+    public UnitOfMeasure save(UnitOfMeasure unitOfMeasure){
+        return unitOfMeasureRepository.save(unitOfMeasure);
+    }
+
+    public void delete(UnitOfMeasure unitOfMeasure){
+        unitOfMeasureRepository.delete(unitOfMeasure);
     }
 }
