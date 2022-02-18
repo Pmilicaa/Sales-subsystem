@@ -4,4 +4,6 @@
 .component{
     display: flex;
     justify-content: end;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

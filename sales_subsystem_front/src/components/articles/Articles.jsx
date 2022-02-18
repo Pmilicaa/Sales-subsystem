@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ArticleGroup from "../articleGroups/ArticleGroup";
 
 import './Articles.css';
-const Articles = ({ articles }) => {
+const Articles = ({ articles,articleGroups }) => {
     let navigate = useNavigate();
 
     const getPrice = (article)=>{
@@ -48,6 +49,8 @@ const Articles = ({ articles }) => {
                 </tbody>
             </table>}
            <div className="component"> <button type="submit" className="btn-primary" onClick={handleClick}>Add article</button></div>
+
+           <ArticleGroup articleGroups={articleGroups}/>
         </>
     )
 }

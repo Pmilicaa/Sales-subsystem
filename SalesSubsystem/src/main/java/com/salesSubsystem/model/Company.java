@@ -56,7 +56,7 @@ public class Company {
 	private List<Article> articles;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
-	@JsonManagedReference(value="company_article_group")
+	@JsonBackReference(value="company_article_group")
 	private List<ArticleGroup> articleGroups;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")

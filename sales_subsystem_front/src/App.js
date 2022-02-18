@@ -37,7 +37,7 @@ function App() {
         <Routes>
           <Route path="/" />
           <Route path="/business" />
-          <Route path="/articles" element={<Articles articles={articles}/>}/>
+          <Route path="/articles" element={<Articles articles={articles} articleGroups={articleGroups}/>}/>
           <Route path="/companies" />
           <Route path="/invoices" />
           <Route path="/addArticle" element={<AddArticle unitOfMeasures={unitOfMeasures} articleGroups={articleGroups} priceList={priceLists} companies={companies}/>}/>
