@@ -1,9 +1,17 @@
 package com.salesSubsystem.controller;
 
+import com.salesSubsystem.dto.ArticleDto;
 import com.salesSubsystem.model.Article;
+import com.salesSubsystem.model.ArticleGroup;
+import com.salesSubsystem.model.Company;
 import com.salesSubsystem.model.PriceList;
+import com.salesSubsystem.model.UnitOfMeasure;
 import com.salesSubsystem.repository.ArticleRepository;
+import com.salesSubsystem.service.ArticleGroupService;
 import com.salesSubsystem.service.ArticleService;
+import com.salesSubsystem.service.CompanyService;
+import com.salesSubsystem.service.PriceListService;
+import com.salesSubsystem.service.UnitOfMeasureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +28,18 @@ public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
 
+    @Autowired
+    private CompanyService companyService;
+
+    @Autowired
+    private ArticleGroupService articleGroupService;
+
+    @Autowired
+    private UnitOfMeasureService unitOfMeasureService;
+
+    @Autowired
+    private PriceListService priceListService;
+
     @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     @GetMapping(path="/articles")
     public @ResponseBody ResponseEntity<List<Article>> getAllArticles(){
@@ -34,10 +54,20 @@ public class ArticleController {
         return new ResponseEntity<Article>(HttpStatus.NOT_FOUND);
 
     }
+    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     @PostMapping(path="/articles")
-    public ResponseEntity<Article> addArticle(@RequestBody Article article){
-        Article newArticle = new Article(article.getName(), article.getDescription(), article.getUnitOfMeasure(), article.getPriceLists(), article.getArticleGroup(),
-                article.getInvoiceItems(), article.getCompany());
+    public ResponseEntity<Article> addArticle(@RequestBody ArticleDto articleDto){
+        ArrayList<PriceList> priceLists = new ArrayList<>();
+
+        ArticleGroup articleGroup = articleGroupService.getArticleGroup(articleDto.getGroup());
+        UnitOfMeasure unit = unitOfMeasureService.getUnitOfMeasure(articleDto.getUom());
+        Company company = companyService.getCompanyByPib(articleDto.getPib());
+
+        Article newArticle = new Article(articleDto.getName(), articleDto.getDescription(), unit, null, articleGroup, null, company);
+        PriceList priceList = new PriceList(new Date(),articleDto.getPrice(),newArticle, company);
+        priceListService.savePriceList(priceList);
+        priceLists.add(priceList);
+        newArticle.setPriceLists(priceLists);
         return new ResponseEntity<Article>(articleService.saveArticle(newArticle), HttpStatus.OK);
     }
     @DeleteMapping(path="/articles/{id}")

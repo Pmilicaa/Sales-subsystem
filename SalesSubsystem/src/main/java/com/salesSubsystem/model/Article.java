@@ -21,33 +21,33 @@ public class Article {
 	@Column(name="description")
 	private String description;
 
-	@ManyToOne(cascade= CascadeType.MERGE)
+	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "unit_of_measure_article", referencedColumnName = "id", nullable = false)
-	@JsonManagedReference(value="unitOfMeasure_article")
+	@JsonManagedReference (value="unitOfMeasure_article")
 	private UnitOfMeasure unitOfMeasure;
 
 	@OneToMany(
 			mappedBy = "id",
-			fetch = FetchType.LAZY,
-			cascade = CascadeType.MERGE
+			fetch = FetchType.EAGER,
+			cascade = CascadeType.ALL
 	)
 	@JsonManagedReference(value="price_article")
 	private List<PriceList> priceLists;
 
-	@ManyToOne(cascade= CascadeType.MERGE)
+	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "article_group_article", referencedColumnName = "id", nullable = false)
-	@JsonManagedReference(value="articleGroup_article")
+	@JsonManagedReference (value="articleGroup_article")
 	private ArticleGroup articleGroup;
 
 	@OneToMany(
 			mappedBy = "id",
 			fetch = FetchType.LAZY,
-			cascade = CascadeType.MERGE
+			cascade = CascadeType.ALL
 	)
 	@JsonManagedReference(value="invoiceItems_article")
 	private List<InvoiceItem> invoiceItems;
 
-	@ManyToOne(cascade= CascadeType.MERGE)
+	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "company_article", referencedColumnName = "id", nullable = false)
 	@JsonManagedReference(value="company_article")
 	private Company company;

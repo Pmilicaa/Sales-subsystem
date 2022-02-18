@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import './Articles.css';
 const Articles = ({ articles }) => {
+    let navigate = useNavigate();
 
     const getPrice = (article)=>{
         let price;
-        if(article.priceLists === 0){
+        if(article.priceLists.length === 0){
             return 'no price';
         }
         for (let index = 0; index < article.priceLists.length; index++) {
@@ -12,12 +15,16 @@ const Articles = ({ articles }) => {
         }
         return price;
     }
+    const handleClick = ()=>{
+        console.log('usao')
+        navigate('/addArticle', { replace: true });
+    }
 
     return (
         <>
          <h1 className="center">Articles</h1>
-           {articles && <table class="table">
-                <thead class="thead-dark">
+           {articles && <table className="table">
+                <thead className="thead-dark">
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Description</th>
@@ -33,13 +40,14 @@ const Articles = ({ articles }) => {
                         <td>{article.name}</td>
                         <td>{article.description}</td>
                         <td>{getPrice(article)}</td>
-                        <td>{article.unitOfMeasure.shortName}</td>
+                       {article.unitOfMeasure.shortName && <td>{article.unitOfMeasure.shortName}</td>}
                         <td>{article.articleGroup.name}</td>
                         <td>{article.company.pib}</td>
 
                     </tr>)}
                 </tbody>
             </table>}
+           <div className="component"> <button type="submit" className="btn-primary" onClick={handleClick}>Add article</button></div>
         </>
     )
 }

@@ -22,4 +22,9 @@ public class ArticleGroupService {
         ArticleGroup articleGroup = articleGroupRepository.findById(id).orElseThrow(NullPointerException::new);
         return articleGroup;
     }
+
+    public ArticleGroup getArticleGroupByName(String name){
+        ArticleGroup articleGroup = articleGroupRepository.findByName(name);
+        return articleGroup;
+    }
 }

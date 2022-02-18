@@ -20,4 +20,8 @@ public class UnitOfMeasureService {
         UnitOfMeasure unitOfMeasure = unitOfMeasureRepository.findById(id).orElseThrow(NullPointerException::new);
         return unitOfMeasure;
     }
+    public UnitOfMeasure getUnitOfMeasureByShortName(String name){
+        UnitOfMeasure unitOfMeasure = unitOfMeasureRepository.findByShortName(name);
+        return unitOfMeasure;
+    }
 }

@@ -38,6 +38,12 @@ public class PriceList {
 		this.article = article;
 		this.company = company;
 	}
+	public PriceList(Date validFrom, double pricePerUnit, Article article, Company company) {
+		this.validFrom = validFrom;
+		this.pricePerUnit = pricePerUnit;
+		this.article = article;
+		this.company = company;
+	}
 
 	public PriceList() {
 		super();

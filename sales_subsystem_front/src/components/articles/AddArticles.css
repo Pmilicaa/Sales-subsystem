@@ -1,0 +1,23 @@
+.component{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.center{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+.element{
+    margin-right: 10px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.form-element{
+    margin-right: 10px;
+    width: 150px;
+    height: 3px;
+}
