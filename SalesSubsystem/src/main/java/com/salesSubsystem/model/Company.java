@@ -63,14 +63,14 @@ public class Company {
 	@JsonManagedReference(value="company_outputInvoice")
 	private List<OutputInvoice> outputInvoices;
 	
-	public Company(Long id, String address, String contact, long pIB, long mIB, boolean active,
+	public Company(Long id, String address, String contact, Long pIB, Long mIB, boolean active,
 					List<BusinessYear> businessYears, List<BusinessPartner> businessPartners, 
 					List<PriceList> priceLists, List<Article> articles, List<ArticleGroup> articleGroups, List<OutputInvoice> outputInvoices) {
 		this.id = id;
 		this.address = address;
 		this.contact = contact;
-		PIB = pIB;
-		MIB = mIB;
+		this.PIB = pIB;
+		this.MIB = mIB;
 		this.active = active;
 		this.businessYears = businessYears;
 		this.businessPartners = businessPartners;
