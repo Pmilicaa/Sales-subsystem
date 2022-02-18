@@ -29,4 +29,8 @@ public class UnitOfMeasureService {
     public void delete(UnitOfMeasure unitOfMeasure){
         unitOfMeasureRepository.delete(unitOfMeasure);
     }
+    public UnitOfMeasure getUnitOfMeasureByShortName(String name){
+        UnitOfMeasure unitOfMeasure = unitOfMeasureRepository.findByShortName(name);
+        return unitOfMeasure;
+    }
 }

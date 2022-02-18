@@ -23,7 +23,7 @@ public class ArticleGroup {
 			fetch = FetchType.LAZY,
 			cascade = CascadeType.ALL
 	)
-	@JsonBackReference(value="articleGroup_article")
+	@JsonBackReference (value="articleGroup_article")
 	private List<Article> articles;
 
 	@OneToMany(
@@ -36,8 +36,15 @@ public class ArticleGroup {
 
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "company_article_group", referencedColumnName = "id", nullable = false)
-	@JsonBackReference(value="company_article_group")
+	@JsonManagedReference(value="company_article_group")
 	private Company company;
+
+	public ArticleGroup(String name, List<Article> articles, List<PDV> pdvs, Company company) {
+		this.name = name;
+		this.articles = articles;
+		this.pdvs = pdvs;
+		this.company = company;
+	}
 
 	public ArticleGroup(long id, String name, List<Article> articles, List<PDV> pdvs, Company company) {
 		super();

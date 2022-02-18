@@ -22,7 +22,11 @@ public class CompanyService {
 	public Company getCompany(Long id) {
 		return companyRepository.findById(id).get();
 	}
-	
+
+	public Company getCompanyByPib(long pib) {
+		return companyRepository.findByPIB(pib);
+	}
+
 	public Company saveCompany(Company company) {
 		return companyRepository.save(company);
 	}
