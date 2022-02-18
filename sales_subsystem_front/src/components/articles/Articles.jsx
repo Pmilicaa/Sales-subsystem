@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import ArticleGroup from "../articleGroups/ArticleGroup";
 
 import './Articles.css';
 const Articles = ({ articles,articleGroups, companies }) => {
+    console.log(articles)
     let navigate = useNavigate();
 
     const getPrice = (article)=>{
@@ -24,7 +26,7 @@ const Articles = ({ articles,articleGroups, companies }) => {
     return (
         <>
          <h1 className="center">Articles</h1>
-           {articles && <table className="table">
+           {articles && <Table className="table" striped bordered hover>
                 <thead className="thead-dark">
                     <tr>
                         <th scope="col">Name</th>
@@ -47,7 +49,7 @@ const Articles = ({ articles,articleGroups, companies }) => {
 
                     </tr>)}
                 </tbody>
-            </table>}
+            </Table>}
            <div className="component"> <button type="submit" className="btn-primary" onClick={handleClick}>Add article</button></div>
 
            <ArticleGroup articleGroups={articleGroups} companies={companies}/>

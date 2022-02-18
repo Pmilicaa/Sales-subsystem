@@ -1,3 +1,4 @@
+import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const ArticleGroup =({articleGroups})=>{
@@ -19,7 +20,7 @@ const ArticleGroup =({articleGroups})=>{
     return(
         <>
          <h1 className="center">Article groups</h1>
-           {articleGroups && <table className="table">
+           {articleGroups && <Table className="table" striped bordered hover>
                 <thead className="thead-dark">
                     <tr>
                         <th scope="col">Name</th>
@@ -33,7 +34,7 @@ const ArticleGroup =({articleGroups})=>{
                         <td>{getCompanyPib(group)}</td>
                     </tr>)}
                 </tbody>
-            </table>}
+            </Table>}
             <div className="component"> <button type="submit" className="btn-primary" onClick={handleClick}>Add group</button></div>
         </>
     )

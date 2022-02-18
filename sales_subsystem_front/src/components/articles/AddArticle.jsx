@@ -73,26 +73,26 @@ const AddArticle = (props) => {
             <div className="form">
                 <Form.Group className="mb-3" className="text-center" >
                     <Form.Label className="form-element">Select group</Form.Label>
-                    <Form.Control as="select" className="center" custom onChange={() => handleOnChange} defaultValue={value}>
+                    <Form.Control as="select" className="center" className="size" custom onChange={() => handleOnChange} defaultValue={value}>
                         {props.articleGroups && props.articleGroups.map((group) => <option name="group" value={group.name}  {...register('group')}>{group.name}</option>)}
                     </Form.Control>
                 </Form.Group>
             
                 <Form.Group className="mb-3" className='text-center' >
                     <Form.Label className="form-element">Unit of measure</Form.Label>
-                    <Form.Control as="select" custom onChange={() => handleOnChange} defaultValue={value}>
+                    <Form.Control as="select" custom onChange={() => handleOnChange} className="size" defaultValue={value}>
                         {props.unitOfMeasures && props.unitOfMeasures.map((unit) => <option name="uom" value={unit.shortName} {...register('uom')}>{unit.shortName}</option>)}
                     </Form.Control>
                 </Form.Group>
 
                 <Form.Group className="mb-3" className="text-center">
                     <Form.Label className="form-element">PIB</Form.Label>
-                    <Form.Control as="select" className="center" custom onChange={() => handleOnChange} defaultValue={value}>
+                    <Form.Control as="select" className="center" className="size" custom onChange={() => handleOnChange} defaultValue={value}>
                         {props.companies && props.companies.map((company) => <option name="pib" value={company.pib} {...register('pib')}>{company.pib}</option>)}
                     </Form.Control>
                 </Form.Group>
             </div>
-            <Button type='submit' variant="primary">Add</Button>
+            <Button type='submit' variant="primary" className="margin-top">Add</Button>
         </Form>
     </>
     )
