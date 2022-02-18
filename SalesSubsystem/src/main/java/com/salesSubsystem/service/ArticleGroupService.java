@@ -1,9 +1,7 @@
 package com.salesSubsystem.service;
 
 import com.salesSubsystem.model.ArticleGroup;
-import com.salesSubsystem.model.UnitOfMeasure;
 import com.salesSubsystem.repository.ArticleGroupRepository;
-import com.salesSubsystem.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +20,10 @@ public class ArticleGroupService {
         ArticleGroup articleGroup = articleGroupRepository.findById(id).orElseThrow(NullPointerException::new);
         return articleGroup;
     }
-
+    public ArticleGroup saveArticleGroup(ArticleGroup group){
+        articleGroupRepository.save(group);
+        return group;
+    }
     public ArticleGroup getArticleGroupByName(String name){
         ArticleGroup articleGroup = articleGroupRepository.findByName(name);
         return articleGroup;

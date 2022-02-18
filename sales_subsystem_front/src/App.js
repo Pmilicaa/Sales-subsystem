@@ -7,9 +7,10 @@ import Articles from './components/articles/Articles';
 import { useEffect, useState } from 'react';
 import AddArticle from './components/articles/AddArticle';
 import { getAllUnitOfMeasures } from './services/UnitOfMeasure';
-import { getAllArticleGroups } from './services/ArticleGroupService';
+import { addArticleGroup, getAllArticleGroups } from './services/ArticleGroupService';
 import { getAllPrices } from './services/PriceListService';
 import { getAllCompanies } from './services/CompanyService';
+import AddArticleGroup from './components/articleGroups/AddArticleGroup';
 
 function App() {
   const [articles, setArticles] = useState();
@@ -37,9 +38,10 @@ function App() {
         <Routes>
           <Route path="/" />
           <Route path="/business" />
-          <Route path="/articles" element={<Articles articles={articles} articleGroups={articleGroups}/>}/>
+          <Route path="/articles" element={<Articles articles={articles} articleGroups={articleGroups} companies={companies}/>}/>
           <Route path="/companies" />
           <Route path="/invoices" />
+          <Route path="/addArticleGroup" element={<AddArticleGroup articleGroups={articleGroups} companies={companies}/>}/>
           <Route path="/addArticle" element={<AddArticle unitOfMeasures={unitOfMeasures} articleGroups={articleGroups} priceList={priceLists} companies={companies}/>}/>
         </Routes>
       </BrowserRouter>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ArticleGroup from "../articleGroups/ArticleGroup";
 
 import './Articles.css';
-const Articles = ({ articles,articleGroups }) => {
+const Articles = ({ articles,articleGroups, companies }) => {
     let navigate = useNavigate();
 
     const getPrice = (article)=>{
@@ -50,7 +50,7 @@ const Articles = ({ articles,articleGroups }) => {
             </table>}
            <div className="component"> <button type="submit" className="btn-primary" onClick={handleClick}>Add article</button></div>
 
-           <ArticleGroup articleGroups={articleGroups}/>
+           <ArticleGroup articleGroups={articleGroups} companies={companies}/>
         </>
     )
 }

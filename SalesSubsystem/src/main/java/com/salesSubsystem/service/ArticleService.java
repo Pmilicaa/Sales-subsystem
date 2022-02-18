@@ -1,6 +1,7 @@
 package com.salesSubsystem.service;
 
 import com.salesSubsystem.model.Article;
+import com.salesSubsystem.model.ArticleGroup;
 import com.salesSubsystem.model.PriceList;
 import com.salesSubsystem.repository.ArticleRepository;
 import com.salesSubsystem.repository.PriceListRepository;
@@ -17,6 +18,9 @@ public class ArticleService {
     private ArticleRepository articleRepository;
 
     @Autowired
+    private ArticleGroupService articleGroupService;
+
+    @Autowired
     private PriceListRepository priceListRepository;
 
     public List<Article> getAllArticles(){
@@ -27,6 +31,8 @@ public class ArticleService {
     }
     public Article saveArticle(Article article){
         articleRepository.save(article);
+        ArticleGroup group = articleGroupService.getArticleGroup(article.getArticleGroup().getId());
+        group.getArticles().add(group.getArticles().size(),article);
         return article;
     }
     public Article logicalDeleteArticle(Article article){

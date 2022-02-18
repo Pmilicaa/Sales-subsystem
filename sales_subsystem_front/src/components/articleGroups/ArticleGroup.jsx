@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const ArticleGroup =({articleGroups})=>{
+    let navigate = useNavigate()
     console.log(articleGroups)
     const getCompanyPib=(group)=>{
         let pibCompany;
@@ -9,6 +12,9 @@ const ArticleGroup =({articleGroups})=>{
             }
             
         }return pibCompany;
+    }
+    const handleClick = ()=>{
+        navigate('/addArticleGroup', { replace: true });
     }
     return(
         <>
@@ -28,6 +34,7 @@ const ArticleGroup =({articleGroups})=>{
                     </tr>)}
                 </tbody>
             </table>}
+            <div className="component"> <button type="submit" className="btn-primary" onClick={handleClick}>Add group</button></div>
         </>
     )
 }

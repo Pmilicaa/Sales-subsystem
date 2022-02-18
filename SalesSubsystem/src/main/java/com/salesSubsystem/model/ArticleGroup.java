@@ -39,6 +39,13 @@ public class ArticleGroup {
 	@JsonManagedReference(value="company_article_group")
 	private Company company;
 
+	public ArticleGroup(String name, List<Article> articles, List<PDV> pdvs, Company company) {
+		this.name = name;
+		this.articles = articles;
+		this.pdvs = pdvs;
+		this.company = company;
+	}
+
 	public ArticleGroup(long id, String name, List<Article> articles, List<PDV> pdvs, Company company) {
 		super();
 		this.id = id;

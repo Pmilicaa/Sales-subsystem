@@ -5,3 +5,14 @@ export const getAllArticleGroups =async ()=>{
     console.log(res)
     return res.data;
  }
+ export const addArticleGroup =async (group)=>{
+    console.log(group);
+  
+     return await axios
+     .post('http://localhost:8080/addArticleGroups/', 
+     group
+     )
+     .then(response => {
+       return response.data;
+     });
+  }
