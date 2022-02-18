@@ -8,6 +8,9 @@
     justify-content: center;
     margin-bottom: 5px;
 }
+.text-center{
+    text-align: center;
+}
 .element{
     margin-right: 10px;
 }

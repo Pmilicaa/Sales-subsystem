@@ -66,34 +66,33 @@ const AddArticle = (props) => {
                 <Form.Label>Description</Form.Label>
                 <Form.Control type="text" placeholder="Enter description" {...register('description')} />
             </Form.Group>
+            <Form.Group className="mb-3">
+                    <Form.Label>Input price</Form.Label>
+                    <Form.Control placeholder="Price" name="price" {...register('price')} />
+                </Form.Group>
             <div className="form">
-                <Form.Group className="mb-3" className="center" >
+                <Form.Group className="mb-3" className="text-center" >
                     <Form.Label className="form-element">Select group</Form.Label>
                     <Form.Control as="select" className="center" custom onChange={() => handleOnChange} defaultValue={value}>
                         {props.articleGroups && props.articleGroups.map((group) => <option name="group" value={group.name}  {...register('group')}>{group.name}</option>)}
                     </Form.Control>
                 </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Input price</Form.Label>
-                    <Form.Control placeholder="Price" name="price" {...register('price')} />
-                </Form.Group>
-
-                <Form.Group className="mb-3" className='center' >
+            
+                <Form.Group className="mb-3" className='text-center' >
                     <Form.Label className="form-element">Unit of measure</Form.Label>
                     <Form.Control as="select" custom onChange={() => handleOnChange} defaultValue={value}>
                         {props.unitOfMeasures && props.unitOfMeasures.map((unit) => <option name="uom" value={unit.shortName} {...register('uom')}>{unit.shortName}</option>)}
                     </Form.Control>
                 </Form.Group>
 
-                <Form.Group className="mb-3" className="center">
+                <Form.Group className="mb-3" className="text-center">
                     <Form.Label className="form-element">PIB</Form.Label>
                     <Form.Control as="select" className="center" custom onChange={() => handleOnChange} defaultValue={value}>
                         {props.companies && props.companies.map((company) => <option name="pib" value={company.pib} {...register('pib')}>{company.pib}</option>)}
                     </Form.Control>
                 </Form.Group>
             </div>
-            <button type='submit'>add</button>
-
+            <Button type='submit' variant="primary">Add</Button>
         </Form>
     </>
     )
