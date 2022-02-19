@@ -14,7 +14,7 @@ import { getAllCompanies } from './services/CompanyService';
 import AddArticleGroup from './components/articleGroups/AddArticleGroup';
 
 function App() {
-  const [articles, setArticles] = useState();
+  const [articles, setArticles] = useState([]);
   const [unitOfMeasures, setUnitOfMeasures] = useState();
   const [articleGroups, setArticleGroups] = useState();
   const [priceLists, setPriceLists]= useState();

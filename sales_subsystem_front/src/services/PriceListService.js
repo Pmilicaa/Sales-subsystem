@@ -5,11 +5,15 @@ export const getAllPrices =async ()=>{
    console.log(res)
    return res.data;
 }
-export const addPriceList =async (article,priceList)=>{
-   
+export const addPriceList =async (id,price)=>{
+    console.log(price);
+    const item={
+      id,
+      price
+    }
     return await axios
-    .post(`http://localhost:8080/articles/${article.id}/priceList`, 
-      priceList
+    .post(`http://localhost:8080/priceListItems`, 
+      item
     )
     .then(response => {
       return response.data;

@@ -2,11 +2,12 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { addPriceList } from "../../services/PriceListService";
 
-const PriceList = (props) => {
+const AddPriceItem = (props) => {
     const { register, handleSubmit } = useForm({
     });
     const onSubmit = data => {
-        addPriceList(props.article,data);
+        addPriceList(props.selectedArticle.id,data.price);
+        props.updateArticle(props.selectedArticle.id, data.price);
     };
 
     return (<>
@@ -20,4 +21,4 @@ const PriceList = (props) => {
         </Form>
     </>)
 }
-export default PriceList;
+export default AddPriceItem;
