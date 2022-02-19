@@ -14,7 +14,7 @@ const AddPriceItem = (props) => {
      <Form onSubmit={handleSubmit(onSubmit)} className="component">
             <Form.Group className="mb-3" >
                 <Form.Label>Price per unit</Form.Label>
-                <Form.Control name="price" type="text" placeholder="Enter price"  {...register('price')}
+                <Form.Control name="price" type="text" placeholder='Change price'  {...register('price')}
                 />
             </Form.Group>
             <Button type='submit' variant="primary" className="margin-top">Add</Button>
