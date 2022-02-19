@@ -5,11 +5,13 @@ import com.salesSubsystem.model.Article;
 import com.salesSubsystem.model.ArticleGroup;
 import com.salesSubsystem.model.Company;
 import com.salesSubsystem.model.PriceList;
+import com.salesSubsystem.model.PriceListItem;
 import com.salesSubsystem.model.UnitOfMeasure;
 import com.salesSubsystem.repository.ArticleRepository;
 import com.salesSubsystem.service.ArticleGroupService;
 import com.salesSubsystem.service.ArticleService;
 import com.salesSubsystem.service.CompanyService;
+import com.salesSubsystem.service.PriceListItemService;
 import com.salesSubsystem.service.PriceListService;
 import com.salesSubsystem.service.UnitOfMeasureService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +40,7 @@ public class ArticleController {
     private UnitOfMeasureService unitOfMeasureService;
 
     @Autowired
-    private PriceListService priceListService;
+    private PriceListItemService priceListItemService;
 
     @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     @GetMapping(path="/articles")
@@ -57,17 +59,14 @@ public class ArticleController {
     @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     @PostMapping(path="/articles")
     public ResponseEntity<Article> addArticle(@RequestBody ArticleDto articleDto){
-        ArrayList<PriceList> priceLists = new ArrayList<>();
-
         ArticleGroup articleGroup = articleGroupService.getArticleGroup(articleDto.getGroup());
         UnitOfMeasure unit = unitOfMeasureService.getUnitOfMeasure(articleDto.getUom());
         Company company = companyService.getCompanyByPib(articleDto.getPib());
 
         Article newArticle = new Article(articleDto.getName(), articleDto.getDescription(), unit, null, articleGroup, null, company);
-        PriceList priceList = new PriceList(new Date(),articleDto.getPrice(),newArticle, company);
-        priceListService.savePriceList(priceList);
-        priceLists.add(priceList);
-        newArticle.setPriceLists(priceLists);
+        PriceListItem priceListItem = new PriceListItem(articleDto.getPrice(),newArticle);
+        priceListItemService.savePriceListItem(priceListItem);
+        newArticle.setPriceListItem(priceListItem);
         return new ResponseEntity<Article>(articleService.saveArticle(newArticle), HttpStatus.OK);
     }
     @DeleteMapping(path="/articles/{id}")

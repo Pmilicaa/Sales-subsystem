@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
-@Entity
+ @Entity
 @Table(name="priceList")
 public class PriceList {
 
@@ -20,28 +21,30 @@ public class PriceList {
 	@Column(name="price_per_unit")
 	private double pricePerUnit;
 
-	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "article_price", referencedColumnName = "id", nullable = true)
-	@JsonBackReference(value="price_article")
-	private Article article;
+	 @OneToMany(
+			 mappedBy = "id",
+			 fetch = FetchType.LAZY,
+			 cascade = CascadeType.ALL
+	 )
+	 private List<PriceListItem> items;
 
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "company_price", referencedColumnName = "id", nullable = true)
 	@JsonBackReference(value="price_company")
 	private Company company;
 
-	public PriceList(long id, Date validFrom, double pricePerUnit, Article article, Company company) {
+	public PriceList(long id, Date validFrom, double pricePerUnit, List<PriceListItem> items, Company company) {
 		super();
 		this.id = id;
 		this.validFrom = validFrom;
 		this.pricePerUnit = pricePerUnit;
-		this.article = article;
+		this.items = items;
 		this.company = company;
 	}
-	public PriceList(Date validFrom, double pricePerUnit, Article article, Company company) {
+	public PriceList(Date validFrom, double pricePerUnit, List<PriceListItem> items, Company company) {
 		this.validFrom = validFrom;
 		this.pricePerUnit = pricePerUnit;
-		this.article = article;
+		this.items = items;
 		this.company = company;
 	}
 
@@ -67,11 +70,11 @@ public class PriceList {
 	public void setPricePerUnit(double pricePerUnit) {
 		this.pricePerUnit = pricePerUnit;
 	}
-	public Article getArticle() {
-		return article;
+	public List<PriceListItem> getItems() {
+		return items;
 	}
-	public void setArticle(Article article) {
-		this.article = article;
+	public void setItems(List<PriceListItem> items) {
+		this.items = items;
 	}
 	public Company getCompany() {return company;}
 	public void setCompany(Company company) {this.company = company;}

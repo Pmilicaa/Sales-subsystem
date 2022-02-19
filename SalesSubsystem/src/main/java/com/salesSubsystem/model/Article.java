@@ -31,8 +31,9 @@ public class Article {
 			fetch = FetchType.EAGER,
 			cascade = CascadeType.ALL
 	)
-	@JsonManagedReference(value="price_article")
-	private List<PriceList> priceLists;
+	@OneToOne
+	@JoinColumn(name = "price_list_item", nullable=false)
+	private PriceListItem priceListItem;
 
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "article_group_article", referencedColumnName = "id", nullable = false)
@@ -55,23 +56,23 @@ public class Article {
 	@Column(name="active")
 	private boolean active;
 
-	public Article(long id, String name, String description, UnitOfMeasure unitOfMeasure, List<PriceList> priceLists, ArticleGroup articleGroup, List<InvoiceItem> invoiceItems, Company company, boolean active) {
+	public Article(long id, String name, String description, UnitOfMeasure unitOfMeasure, PriceListItem priceListItem, ArticleGroup articleGroup, List<InvoiceItem> invoiceItems, Company company, boolean active) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.unitOfMeasure = unitOfMeasure;
-		this.priceLists = priceLists;
+		this.priceListItem = priceListItem;
 		this.articleGroup = articleGroup;
 		this.invoiceItems = invoiceItems;
 		this.company = company;
 		this.active = active;
 	}
 
-	public Article(String name, String description, UnitOfMeasure unitOfMeasure, List<PriceList> priceLists, ArticleGroup articleGroup, List<InvoiceItem> invoiceItems, Company company) {
+	public Article(String name, String description, UnitOfMeasure unitOfMeasure, PriceListItem priceListItem, ArticleGroup articleGroup, List<InvoiceItem> invoiceItems, Company company) {
 		this.name = name;
 		this.description = description;
 		this.unitOfMeasure = unitOfMeasure;
-		this.priceLists = priceLists;
+		this.priceListItem = priceListItem;
 		this.articleGroup = articleGroup;
 		this.invoiceItems = invoiceItems;
 		this.company = company;
@@ -112,11 +113,11 @@ public class Article {
 	public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
 		this.unitOfMeasure = unitOfMeasure;
 	}
-	public List<PriceList> getPriceLists() {
-		return priceLists;
+	public PriceListItem getPriceListItem() {
+		return priceListItem;
 	}
-	public void setPriceLists(List<PriceList> priceLists) {
-		this.priceLists = priceLists;
+	public void setPriceListItem(PriceListItem priceListItem) {
+		this.priceListItem = priceListItem;
 	}
 	public List<InvoiceItem> getInvoiceItems() {
 		return invoiceItems;
