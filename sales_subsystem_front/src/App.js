@@ -41,6 +41,7 @@ function App() {
         <Routes>
         <Route path="/articles" element={<Articles articles={articles} articleGroups={articleGroups} companies={companies}/>}/>
           <Route path="/companies" />
+          <Route path="/business" element={<BusinessPartnerPage />}/>
           <Route path="/invoices" />
           <Route path="/addArticleGroup" element={<AddArticleGroup articleGroups={articleGroups} companies={companies}/>}/>
           <Route path="/addArticle" element={<AddArticle unitOfMeasures={unitOfMeasures} articleGroups={articleGroups} priceList={priceLists} companies={companies}/>}/>
