@@ -2,6 +2,7 @@ package com.salesSubsystem.controller;
 
 import com.salesSubsystem.model.Article;
 import com.salesSubsystem.model.PriceList;
+import com.salesSubsystem.model.PriceListItem;
 import com.salesSubsystem.repository.PriceListRepository;
 import com.salesSubsystem.service.ArticleService;
 import com.salesSubsystem.service.PriceListService;
@@ -25,10 +26,7 @@ public class PriceListController {
 
     @Autowired
     private PriceListService priceListService;
-    
-    @Autowired
-    private ArticleService articleService;
-    
+
     @Autowired
     private PriceListRepository priceListRepository;
 
@@ -46,17 +44,6 @@ public class PriceListController {
             return new ResponseEntity<PriceList>(HttpStatus.NOT_FOUND);
         }
         return  new ResponseEntity<PriceList>(pl, HttpStatus.OK);
-    }
-    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
-    @PostMapping(path="/articles/{articleId}/priceList", consumes = "application/json")
-    private @ResponseBody ResponseEntity<?> savePriceList(@RequestBody PriceList priceList, @PathVariable("articleId") Long articleId) {
-    	Article article = articleService.getArticle(articleId);
-    	if (article == null) {
-    		return new ResponseEntity(HttpStatus.NOT_FOUND);
-    	}
-    	priceList.setArticle(article);
-    	priceList = priceListService.savePriceList(priceList);
-    	return new ResponseEntity(priceList, HttpStatus.OK);
     }
     
 }
