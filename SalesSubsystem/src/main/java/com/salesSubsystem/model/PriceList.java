@@ -18,9 +18,6 @@ public class PriceList {
 	@Column(name="valid_from")
 	private Date validFrom;
 
-	@Column(name="price_per_unit")
-	private double pricePerUnit;
-
 	 @OneToMany(
 			 mappedBy = "id",
 			 fetch = FetchType.LAZY,
@@ -33,17 +30,15 @@ public class PriceList {
 	@JsonBackReference(value="price_company")
 	private Company company;
 
-	public PriceList(long id, Date validFrom, double pricePerUnit, List<PriceListItem> items, Company company) {
+	public PriceList(long id, Date validFrom, List<PriceListItem> items, Company company) {
 		super();
 		this.id = id;
 		this.validFrom = validFrom;
-		this.pricePerUnit = pricePerUnit;
 		this.items = items;
 		this.company = company;
 	}
-	public PriceList(Date validFrom, double pricePerUnit, List<PriceListItem> items, Company company) {
+	public PriceList(Date validFrom, List<PriceListItem> items, Company company) {
 		this.validFrom = validFrom;
-		this.pricePerUnit = pricePerUnit;
 		this.items = items;
 		this.company = company;
 	}
@@ -63,12 +58,6 @@ public class PriceList {
 	}
 	public void setValidFrom(Date validFrom) {
 		this.validFrom = validFrom;
-	}
-	public double getPricePerUnit() {
-		return pricePerUnit;
-	}
-	public void setPricePerUnit(double pricePerUnit) {
-		this.pricePerUnit = pricePerUnit;
 	}
 	public List<PriceListItem> getItems() {
 		return items;
