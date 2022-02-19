@@ -22,8 +22,8 @@ public class BusinessPartnerService {
 		return businessPartnerRepository.findById(id).get();
 	}
 	
-	public BusinessPartner saveBusinessPartner(BusinessPartner businesPartner) {
-		return businessPartnerRepository.save(businesPartner);
+	public BusinessPartner saveBusinessPartner(BusinessPartner businessPartner) {
+		return businessPartnerRepository.save(businessPartner);
 	}
 	
 	public void removeBusinessPartner(BusinessPartner businessPartner) {

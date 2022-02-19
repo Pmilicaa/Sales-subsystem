@@ -23,7 +23,7 @@ public class ArticleGroup {
 			fetch = FetchType.LAZY,
 			cascade = CascadeType.ALL
 	)
-	@JsonBackReference (value="articleGroup_article")
+	@JsonManagedReference  (value="articleGroup_article")
 	private List<Article> articles;
 
 	@OneToMany(
@@ -34,25 +34,18 @@ public class ArticleGroup {
 	@JsonManagedReference
 	private List<PDV> pdvs;
 
-	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "company_article_group", referencedColumnName = "id", nullable = false)
-	@JsonManagedReference(value="company_article_group")
-	private Company company;
-
-	public ArticleGroup(String name, List<Article> articles, List<PDV> pdvs, Company company) {
+	public ArticleGroup(String name, List<Article> articles, List<PDV> pdvs) {
 		this.name = name;
 		this.articles = articles;
 		this.pdvs = pdvs;
-		this.company = company;
 	}
 
-	public ArticleGroup(long id, String name, List<Article> articles, List<PDV> pdvs, Company company) {
+	public ArticleGroup(long id, String name, List<Article> articles, List<PDV> pdvs) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.articles = articles;
 		this.pdvs = pdvs;
-		this.company = company;
 	}
 
 	public ArticleGroup() {
@@ -83,6 +76,4 @@ public class ArticleGroup {
 	public void setPdvs(List<PDV> pdvs) {
 		this.pdvs = pdvs;
 	}
-	public Company getCompany() {return company;}
-	public void setCompany(Company company) {this.company = company;}
 }

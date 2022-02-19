@@ -19,7 +19,7 @@ function App() {
   const [unitOfMeasures, setUnitOfMeasures] = useState();
   const [articleGroups, setArticleGroups] = useState();
   const [priceLists, setPriceLists]= useState();
-  const [companies, setCompanies]= useState();
+  const [companies, setCompanies]= useState([]);
   useEffect(()=>{
     getAllArticles().then((article)=>setArticles(article));
     getAllUnitOfMeasures().then((unit)=>setUnitOfMeasures(unit));
@@ -27,12 +27,6 @@ function App() {
     getAllPrices().then((price)=>setPriceLists(price));
     getAllCompanies().then((company)=>setCompanies(company));
   },[])
-  console.log(articles);
-  console.log(unitOfMeasures);
-  console.log(articleGroups);
-  console.log(priceLists);
-  console.log(companies);
-
   return (
     <>
       <Container>
@@ -41,7 +35,7 @@ function App() {
         <Routes>
         <Route path="/articles" element={<Articles articles={articles} articleGroups={articleGroups} companies={companies}/>}/>
           <Route path="/companies" />
-          <Route path="/business" element={<BusinessPartnerPage />}/>
+          <Route path="/business" element={<BusinessPartnerPage companies={companies} />}/>
           <Route path="/invoices" />
           <Route path="/addArticleGroup" element={<AddArticleGroup articleGroups={articleGroups} companies={companies}/>}/>
           <Route path="/addArticle" element={<AddArticle unitOfMeasures={unitOfMeasures} articleGroups={articleGroups} priceList={priceLists} companies={companies}/>}/>
