@@ -47,8 +47,8 @@ public class PriceListController {
         }
         return  new ResponseEntity<PriceList>(pl, HttpStatus.OK);
     }
-    
-    @PostMapping(path="/articles/{articleId}/priceListes", consumes = "application/json")
+    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+    @PostMapping(path="/articles/{articleId}/priceList", consumes = "application/json")
     private @ResponseBody ResponseEntity<?> savePriceList(@RequestBody PriceList priceList, @PathVariable("articleId") Long articleId) {
     	Article article = articleService.getArticle(articleId);
     	if (article == null) {

@@ -12,7 +12,6 @@ import { addArticleGroup, getAllArticleGroups } from './services/ArticleGroupSer
 import { getAllPrices } from './services/PriceListService';
 import { getAllCompanies } from './services/CompanyService';
 import AddArticleGroup from './components/articleGroups/AddArticleGroup';
-import BusinessPartnerPage from './pages/BusinessPartnerPage';
 
 function App() {
   const [articles, setArticles] = useState();
