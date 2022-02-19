@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import TopNavbar from './components/TopNavbar';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UnitsOfMeasuresPage from './pages/UnitsOfMeasuresPage';
@@ -12,6 +12,7 @@ import { addArticleGroup, getAllArticleGroups } from './services/ArticleGroupSer
 import { getAllPrices } from './services/PriceListService';
 import { getAllCompanies } from './services/CompanyService';
 import AddArticleGroup from './components/articleGroups/AddArticleGroup';
+import BusinessPartnerPage from './pages/BusinessPartnerPage';
 
 function App() {
   const [articles, setArticles] = useState();
@@ -48,7 +49,7 @@ function App() {
       </BrowserRouter>
       </Container>
     </>
-  );
+  )
 }
 
 export default App;
