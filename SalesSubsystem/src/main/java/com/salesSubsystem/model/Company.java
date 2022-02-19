@@ -52,10 +52,10 @@ public class Company {
 	private List<PriceList> priceLists;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
-	@JsonBackReference(value="company_article")
+	@JsonManagedReference(value="company_article")
 	private List<Article> articles;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "company")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonBackReference(value="company_article_group")
 	private List<ArticleGroup> articleGroups;
 	

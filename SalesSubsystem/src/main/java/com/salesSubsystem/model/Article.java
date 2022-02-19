@@ -21,9 +21,8 @@ public class Article {
 	@Column(name="description")
 	private String description;
 
-	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "unit_of_measure_article", referencedColumnName = "id", nullable = false)
-	@JsonManagedReference (value="unitOfMeasure_article")
+	@OneToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name = "unit_of_measure_id")
 	private UnitOfMeasure unitOfMeasure;
 
 	@OneToMany(
@@ -37,7 +36,7 @@ public class Article {
 
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "article_group_article", referencedColumnName = "id", nullable = false)
-	@JsonManagedReference (value="articleGroup_article")
+	@JsonBackReference (value="articleGroup_article")
 	private ArticleGroup articleGroup;
 
 	@OneToMany(
@@ -50,7 +49,7 @@ public class Article {
 
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "company_article", referencedColumnName = "id", nullable = false)
-	@JsonManagedReference(value="company_article")
+	@JsonBackReference(value="company_article")
 	private Company company;
 
 	@Column(name="active")
