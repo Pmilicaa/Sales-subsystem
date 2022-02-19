@@ -67,30 +67,22 @@ const AddArticle = (props) => {
                 <Form.Control type="text" placeholder="Enter description" {...register('description')} />
             </Form.Group>
             <Form.Group className="mb-3">
-                    <Form.Label>Input price</Form.Label>
-                    <Form.Control placeholder="Price" name="price" {...register('price')} />
-                </Form.Group>
+                <Form.Label>Input price</Form.Label>
+                <Form.Control placeholder="Price" name="price" {...register('price')} />
+            </Form.Group>
             <div className="form">
-                <Form.Group className="mb-3" className="text-center" >
-                    <Form.Label className="form-element">Select group</Form.Label>
-                    <Form.Control as="select" className="center" className="size" custom onChange={() => handleOnChange} defaultValue={value}>
-                        {props.articleGroups && props.articleGroups.map((group) => <option name="group" value={group.name}  {...register('group')}>{group.name}</option>)}
-                    </Form.Control>
-                </Form.Group>
-            
-                <Form.Group className="mb-3" className='text-center' >
-                    <Form.Label className="form-element">Unit of measure</Form.Label>
-                    <Form.Control as="select" custom onChange={() => handleOnChange} className="size" defaultValue={value}>
-                        {props.unitOfMeasures && props.unitOfMeasures.map((unit) => <option name="uom" value={unit.shortName} {...register('uom')}>{unit.shortName}</option>)}
-                    </Form.Control>
-                </Form.Group>
-
-                <Form.Group className="mb-3" className="text-center">
-                    <Form.Label className="form-element">PIB</Form.Label>
-                    <Form.Control as="select" className="center" className="size" custom onChange={() => handleOnChange} defaultValue={value}>
-                        {props.companies && props.companies.map((company) => <option name="pib" value={company.pib} {...register('pib')}>{company.pib}</option>)}
-                    </Form.Control>
-                </Form.Group>
+                <p>Select group</p>
+                <Form.Select aria-label="Select group"  {...register('group')} className="form-element" >
+                {props.articleGroups && props.articleGroups.map((group) => <option value={group.name} >{group.name}</option>)}
+                </Form.Select>
+                <p>Select unit of measure</p>
+                <Form.Select aria-label="Select unit of measure"  {...register('uom')}  className="form-element">
+                {props.unitOfMeasures && props.unitOfMeasures.map((unit)  => <option value={unit.shortName} >{unit.shortName}</option>)}
+                </Form.Select>
+                <p>Select PIB</p>
+                <Form.Select aria-label="Select PIB"  className="form-element" {...register('pib')} >
+                {props.companies && props.companies.map((company) => <option value={company.pib} >{company.pib}</option>)}
+                </Form.Select>
             </div>
             <Button type='submit' variant="primary" className="margin-top">Add</Button>
         </Form>

@@ -1,5 +1,7 @@
 package com.salesSubsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +24,7 @@ public class PriceListItem {
     private double price;
 
     @OneToOne(mappedBy = "priceListItem")
+    @JsonBackReference(value="article_price")
     private Article article;
 
     public PriceListItem() {

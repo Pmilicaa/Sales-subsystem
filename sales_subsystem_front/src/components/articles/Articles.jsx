@@ -7,6 +7,9 @@ import PriceList from "../priceList/PriceList";
 import './Articles.css';
 const Articles = ({ articles, articleGroups, companies }) => {
     let navigate = useNavigate();
+    console.log(articles);
+    console.log(articleGroups);
+    console.log(companies);
     const [show, setShow] = useState(false);
     const getPrice = (article) => {
         let price;
@@ -47,9 +50,8 @@ const Articles = ({ articles, articleGroups, companies }) => {
                         <tr>
                             <td>{article.name}</td>
                             <td>{article.description}</td>
-                            <td>{getPrice(article)}</td>
+                            <td>{article.priceListItem.price}</td>
                             {article.unitOfMeasure.shortName && <td>{article.unitOfMeasure.shortName}</td>}
-                            <td>{article.articleGroup.name}</td>
                             <td>{article.company.pib}</td>
                             <Button type="submit" onClick={handleShow} >Edit</Button>
 

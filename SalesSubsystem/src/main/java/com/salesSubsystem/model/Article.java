@@ -31,8 +31,9 @@ public class Article {
 			fetch = FetchType.EAGER,
 			cascade = CascadeType.ALL
 	)
-	@OneToOne
-	@JoinColumn(name = "price_list_item", nullable=false)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "price_list_item", nullable=true)
+	@JsonManagedReference (value="article_price")
 	private PriceListItem priceListItem;
 
 	@ManyToOne(cascade= CascadeType.ALL)

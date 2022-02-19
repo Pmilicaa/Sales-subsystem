@@ -62,11 +62,13 @@ public class ArticleController {
         ArticleGroup articleGroup = articleGroupService.getArticleGroup(articleDto.getGroup());
         UnitOfMeasure unit = unitOfMeasureService.getUnitOfMeasure(articleDto.getUom());
         Company company = companyService.getCompanyByPib(articleDto.getPib());
-
-        Article newArticle = new Article(articleDto.getName(), articleDto.getDescription(), unit, null, articleGroup, null, company);
-        PriceListItem priceListItem = new PriceListItem(articleDto.getPrice(),newArticle);
+        PriceListItem priceListItem = new PriceListItem(articleDto.getPrice(),null);
+        Article article = new Article(articleDto.getName(), articleDto.getDescription(), unit, priceListItem, articleGroup, null, company);
+        Article newArticle = articleRepository.save(article);
+        priceListItem.setArticle(newArticle);
         priceListItemService.savePriceListItem(priceListItem);
-        newArticle.setPriceListItem(priceListItem);
+        PriceListItem item = priceListItemService.getPriceListItemByArticle(newArticle);
+        newArticle.setPriceListItem(item);
         return new ResponseEntity<Article>(articleService.saveArticle(newArticle), HttpStatus.OK);
     }
     @DeleteMapping(path="/articles/{id}")
