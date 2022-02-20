@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,13 +24,17 @@ public class PriceListItem {
     @Column(name="price")
     private double price;
 
-    @OneToOne(mappedBy = "priceListItem")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "priceListItem")
     @JsonBackReference(value="article_price")
     private Article article;
 
     public PriceListItem() {
     }
-
+    public PriceListItem(long id, double price, Article article) {
+        this.id =id;
+        this.price = price;
+        this.article = article;
+    }
     public PriceListItem(double price, Article article) {
         this.price = price;
         this.article = article;

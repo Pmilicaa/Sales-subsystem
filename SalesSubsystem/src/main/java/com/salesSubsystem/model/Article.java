@@ -22,22 +22,18 @@ public class Article {
 	private String description;
 
 	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "unit_of_measure_article", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "unit_of_measure_article", referencedColumnName = "id")
 	@JsonManagedReference (value="unitOfMeasure_article")
 	private UnitOfMeasure unitOfMeasure;
 
-	@OneToMany(
-			mappedBy = "id",
-			fetch = FetchType.EAGER,
-			cascade = CascadeType.ALL
-	)
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "price_list_item", nullable=true)
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "price_list_item")
 	@JsonManagedReference (value="article_price")
 	private PriceListItem priceListItem;
 
 	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "article_group_article", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "article_group_article", referencedColumnName = "id")
 	@JsonManagedReference (value="articleGroup_article")
 	private ArticleGroup articleGroup;
 
@@ -50,7 +46,7 @@ public class Article {
 	private List<InvoiceItem> invoiceItems;
 
 	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "company_article", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "company_article", referencedColumnName = "id")
 	@JsonManagedReference(value="company_article")
 	private Company company;
 

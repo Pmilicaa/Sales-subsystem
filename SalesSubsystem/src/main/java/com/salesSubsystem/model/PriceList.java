@@ -19,14 +19,14 @@ public class PriceList {
 	private long validFrom;
 
 	 @OneToMany(
-			 mappedBy = "id",
 			 fetch = FetchType.LAZY,
 			 cascade = CascadeType.ALL
 	 )
+	 @JoinColumn(name="pricelist_item_id")
 	 private List<PriceListItem> items;
 
 	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "company_price", referencedColumnName = "id", nullable = true)
+	@JoinColumn(name = "company_price", referencedColumnName = "id")
 	@JsonBackReference(value="price_company")
 	private Company company;
 

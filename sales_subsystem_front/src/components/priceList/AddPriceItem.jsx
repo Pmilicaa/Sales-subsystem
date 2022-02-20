@@ -1,12 +1,13 @@
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { addPriceList } from "../../services/PriceListService";
+import { addPriceListItem } from "../../services/PriceListService";
 
 const AddPriceItem = (props) => {
     const { register, handleSubmit } = useForm({
     });
+    
     const onSubmit = data => {
-        addPriceList(props.selectedArticle.id,data.price);
+        addPriceListItem(props.selectedArticle.id,data.price);
         props.updateArticle(props.selectedArticle.id, data.price);
     };
 

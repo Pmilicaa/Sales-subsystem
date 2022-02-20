@@ -35,7 +35,7 @@ public class ArticleGroup {
 	private List<PDV> pdvs;
 
 	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "company_article_group", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "company_article_group", referencedColumnName = "id")
 	@JsonManagedReference(value="company_article_group")
 	private Company company;
 

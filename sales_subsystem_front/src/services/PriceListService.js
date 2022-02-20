@@ -5,7 +5,7 @@ export const getAllPrices =async ()=>{
    console.log(res)
    return res.data;
 }
-export const addPriceList =async (id,price)=>{
+export const addPriceListItem =async (id,price)=>{
     console.log(price);
     const item={
       id,
@@ -19,3 +19,24 @@ export const addPriceList =async (id,price)=>{
       return response.data;
     });
  }
+ export const addPriceList =async (articlePriceList)=>{
+  console.log(articlePriceList);
+ 
+  return await axios
+  .post(`http://localhost:8080/priceLists`, 
+  {articlePriceList}
+  )
+  .then(response => {
+    return response.data;
+  });
+}
+export const getPriceList =async (id)=>{
+  console.log(id);
+ 
+  return await axios
+  .get(`http://localhost:8080/priceLists/${id}`
+  )
+  .then(response => {
+    return response.data;
+  });
+}
