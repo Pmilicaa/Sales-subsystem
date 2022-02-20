@@ -1,5 +1,7 @@
 package com.salesSubsystem.controller;
 
+import com.salesSubsystem.dto.CompanyDto;
+import com.salesSubsystem.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.salesSubsystem.model.Company;
 import com.salesSubsystem.service.CompanyService;
+
+import java.util.Optional;
 
 @RestController
 public class CompanyController {
@@ -36,11 +40,17 @@ public class CompanyController {
 		}
 		return new ResponseEntity(company, HttpStatus.OK);
 	}
-	
+
+	@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 	@PostMapping(path = "/companies")
-	public @ResponseBody ResponseEntity<?> saveCompany(@RequestBody Company company) {
-		Company newCompany = companyService.saveCompany(company);
-		return new ResponseEntity(newCompany, HttpStatus.OK);
+	public @ResponseBody ResponseEntity<?> saveCompany(@RequestBody CompanyDto companyDto) {
+		Company company = companyService.getCompanyByPib(companyDto.getPib());
+		if(company == null){
+			Company newCompany = companyService.saveCompany(new Company(companyDto));
+			return new ResponseEntity(newCompany, HttpStatus.OK);
+		}else{
+			return new ResponseEntity(new Message("Company with the same PIB already exists"), HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@DeleteMapping(path = "/companies/{companyId}")
