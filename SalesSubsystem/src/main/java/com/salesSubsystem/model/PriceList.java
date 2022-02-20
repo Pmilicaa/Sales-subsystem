@@ -16,7 +16,7 @@ public class PriceList {
 	private long id;
 
 	@Column(name="valid_from")
-	private Date validFrom;
+	private long validFrom;
 
 	 @OneToMany(
 			 mappedBy = "id",
@@ -30,14 +30,14 @@ public class PriceList {
 	@JsonBackReference(value="price_company")
 	private Company company;
 
-	public PriceList(long id, Date validFrom, List<PriceListItem> items, Company company) {
+	public PriceList(long id, long validFrom, List<PriceListItem> items, Company company) {
 		super();
 		this.id = id;
 		this.validFrom = validFrom;
 		this.items = items;
 		this.company = company;
 	}
-	public PriceList(Date validFrom, List<PriceListItem> items, Company company) {
+	public PriceList(long validFrom, List<PriceListItem> items, Company company) {
 		this.validFrom = validFrom;
 		this.items = items;
 		this.company = company;
@@ -53,10 +53,10 @@ public class PriceList {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Date getValidFrom() {
+	public long getValidFrom() {
 		return validFrom;
 	}
-	public void setValidFrom(Date validFrom) {
+	public void setValidFrom(long validFrom) {
 		this.validFrom = validFrom;
 	}
 	public List<PriceListItem> getItems() {

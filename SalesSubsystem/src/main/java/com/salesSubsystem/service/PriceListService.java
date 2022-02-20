@@ -17,10 +17,7 @@ public class PriceListService {
         PriceList priceList = priceListRepository.findById(id).orElseThrow(NullPointerException::new);
         return priceList;
     }
-    public PriceList getPriceListByPricePerUnit(double price){
-        PriceList priceList = priceListRepository.findByPricePerUnit(price);
-        return priceList;
-    }
+
     public List<PriceList> getAllPriceLists(){
         return priceListRepository.findAll();
     }

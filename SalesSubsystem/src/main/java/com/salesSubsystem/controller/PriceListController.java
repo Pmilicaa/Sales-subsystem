@@ -1,5 +1,6 @@
 package com.salesSubsystem.controller;
 
+import com.salesSubsystem.dto.PriceListResponseDto;
 import com.salesSubsystem.model.Article;
 import com.salesSubsystem.model.PriceList;
 import com.salesSubsystem.model.PriceListItem;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,12 +30,27 @@ public class PriceListController {
     private PriceListService priceListService;
 
     @Autowired
+    private ArticleService articleService;
+
+    @Autowired
     private PriceListRepository priceListRepository;
 
     @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     @GetMapping(path="/priceLists")
-    private ResponseEntity<List<PriceList>> getPriceLists(){
-        return new ResponseEntity<List<PriceList>>(priceListService.getAllPriceLists(), HttpStatus.OK);
+    private ResponseEntity<List<PriceListResponseDto>> getPriceLists(){
+        List<PriceList> priceLists = priceListService.getAllPriceLists();
+        List<Article> articles = articleService.getAllArticles();
+        List<PriceListResponseDto>  listsDto = new ArrayList<>();
+        for(PriceList list : priceLists){
+            for(PriceListItem item: list.getItems()){
+                for(Article article: articles){
+                    if(item.getId() == article.getPriceListItem().getId()){
+                        listsDto.add(new PriceListResponseDto(list.getValidFrom(),item.getPrice(),article.getName(),article.getArticleGroup().getName(), article.getCompany().getPIB()));
+                    }
+                }
+            }
+        }
+        return new ResponseEntity<List<PriceListResponseDto>>(listsDto, HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)

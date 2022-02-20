@@ -30,8 +30,11 @@ import java.util.List;
 public class PriceListItemController {
     @Autowired
     private PriceListItemService priceListItemService;
+
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private PriceListService priceListService;
 
     @Autowired
     private PriceListItemRepository priceListItemRepository;

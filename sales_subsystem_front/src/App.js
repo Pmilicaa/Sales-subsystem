@@ -12,12 +12,13 @@ import { addArticleGroup, getAllArticleGroups } from './services/ArticleGroupSer
 import { getAllPrices } from './services/PriceListService';
 import { getAllCompanies } from './services/CompanyService';
 import AddArticleGroup from './components/articleGroups/AddArticleGroup';
+import PriceLists from './components/priceList/PriceLists';
 
 function App() {
   const [articles, setArticles] = useState([]);
   const [unitOfMeasures, setUnitOfMeasures] = useState();
   const [articleGroups, setArticleGroups] = useState();
-  const [priceLists, setPriceLists]= useState();
+  const [priceLists, setPriceLists]= useState([]);
   const [companies, setCompanies]= useState();
   useEffect(()=>{
     getAllArticles().then((article)=>setArticles(article));
@@ -41,6 +42,7 @@ function App() {
         <Route path="/articles" element={<Articles articles={articles} articleGroups={articleGroups} companies={companies}/>}/>
           <Route path="/companies" />
           <Route path="/invoices" />
+          <Route path="/priceList" element={<PriceLists priceLists={priceLists} articles={articles} />}/>
           <Route path="/addArticleGroup" element={<AddArticleGroup articleGroups={articleGroups} companies={companies}/>}/>
           <Route path="/addArticle" element={<AddArticle unitOfMeasures={unitOfMeasures} articleGroups={articleGroups} priceList={priceLists} companies={companies}/>}/>
           <Route path="/units" element={<UnitsOfMeasuresPage/>} />
