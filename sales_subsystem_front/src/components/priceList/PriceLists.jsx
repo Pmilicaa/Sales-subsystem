@@ -9,11 +9,9 @@ const PriceLists = (props) => {
     const [ onePriceVisible, setOnePriceVisible ] = useState(false);
     const [ copyPriceList, setCopyPriceList ] = useState(false);
     const [ selectedPriceList, setSelectedPriceList ] = useState()
-    const getDate = ()=>{
-        let date;
-        for (let index = 0; index < props.priceLists.length; index++) {
-            date = props.priceLists[index].validDate;
-        }
+    const getDate = (priceList)=>{
+        console.log(priceList)
+        const date = priceList.validDate;
         var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
         return (new Date(date).toLocaleDateString('en-US', options));
     }
@@ -41,7 +39,7 @@ const PriceLists = (props) => {
             <tbody>
                 {props.priceLists.map((list) =>
                     <tr>
-                        <td>{getDate()}</td>
+                        <td>{getDate(list)}</td>
                         <td>{list.pib}</td>
                         <td><Button onClick={()=>handleOnView(list.id)}>View</Button></td>
                         <td><Button onClick={()=>handleOnCopy(list.id)}>Copy</Button></td>
