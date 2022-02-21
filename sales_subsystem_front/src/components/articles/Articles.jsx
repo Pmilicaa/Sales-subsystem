@@ -83,7 +83,7 @@ const Articles = ({ articles, articleGroups, companies }) => {
             </Modal>
             <div className="component"> <button type="submit" className="btn-primary" onClick={handleClick}>Add article</button></div>
 
-            {/* <ArticleGroup articleGroups={articleGroups} companies={companies} /> */}
+             <ArticleGroup articleGroups={articleGroups} companies={companies} /> 
         </>
     )
 }

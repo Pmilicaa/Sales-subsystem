@@ -60,7 +60,7 @@ public class ArticleGroupController {
         Company company = companyService.getCompanyByPib(articleGroupDto.getPib());
         List<Article> articles = new ArrayList<>();
         List<PDV> pdvs = new ArrayList<>();
-        ArticleGroup group = new ArticleGroup(articleGroupDto.getName(),articles,pdvs, null);
+        ArticleGroup group = new ArticleGroup(articleGroupDto.getName(),pdvs);
         return new ResponseEntity<ArticleGroup>(articleGroupService.saveArticleGroup(group), HttpStatus.OK);
     }
 }

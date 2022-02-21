@@ -7,7 +7,8 @@ const ArticlePriceRow =({article})=>{
                 <td>{article.description}</td>
                 <td>{article.priceListItem.price}</td>
                 {article.unitOfMeasure.shortName && <td>{article.unitOfMeasure.shortName}</td>}
-                <td>{article.company.pib}</td>
+                <td>{article.articleGroup.name}</td>
+                {/* <td>{article.articleGroup.company.pib}</td> */}
             </tr>
    </tbody>
    </>)

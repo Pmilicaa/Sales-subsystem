@@ -14,7 +14,7 @@ const Article = ({ article, handleShow,setSelectedArticle }) => {
                 <td>{article.description}</td>
                 <td>{article.priceListItem.price}</td>
                 {article.unitOfMeasure.shortName && <td>{article.unitOfMeasure.shortName}</td>}
-                <td>{article.company.pib}</td>
+                {/* <td>{article.articleGroup.company.pib}</td> */}
                 <Button onClick={handleEdit} >Edit</Button>
             </tr>
         </tbody></>)

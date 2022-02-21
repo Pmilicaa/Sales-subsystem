@@ -53,8 +53,6 @@ const AddPriceList = (props) => {
                 <th scope="col">Unit of measure</th>
                 <th scope="col">Article group</th>
                 <th scope="col">PIB</th>
-                <th scope="col">Add</th>
-
             </tr>
         </thead>
         {props.articles.map((article) =>

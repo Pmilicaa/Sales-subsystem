@@ -1,12 +1,12 @@
 package com.salesSubsystem.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
 
+@JsonIgnoreProperties({"company"})
 @Entity
 @Table(name="article")
 public class Article {
@@ -22,7 +22,6 @@ public class Article {
 	@Column(name="description")
 	private String description;
 
-	@JsonIgnore
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "unit_of_measure_article", referencedColumnName = "id")
 	@JsonManagedReference (value="unitOfMeasure_article")
@@ -34,7 +33,6 @@ public class Article {
 	@JsonManagedReference (value="article_price")
 	private PriceListItem priceListItem;
 
-	@JsonIgnore
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name = "article_group_article", referencedColumnName = "id")
 	@JsonManagedReference (value="articleGroup_article")
