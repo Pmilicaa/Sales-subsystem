@@ -32,6 +32,11 @@ public class PDV {
 		this.pdvAssessment = pdvAssessment;
 		this.articleGroups = articleGroups;
 	}
+	public PDV(Date validFrom, double pdvAssessment, ArticleGroup articleGroups) {
+		this.validFrom = validFrom;
+		this.pdvAssessment = pdvAssessment;
+		this.articleGroups = articleGroups;
+	}
 
 	public PDV() {
 		super();

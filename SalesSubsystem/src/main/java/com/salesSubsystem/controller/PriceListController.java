@@ -9,10 +9,12 @@ import com.salesSubsystem.dto.PriceListResponseDto;
 import com.salesSubsystem.model.Article;
 import com.salesSubsystem.model.Company;
 import com.salesSubsystem.model.InvoiceItem;
+import com.salesSubsystem.model.PDV;
 import com.salesSubsystem.model.PriceList;
 import com.salesSubsystem.model.PriceListItem;
 import com.salesSubsystem.repository.PriceListRepository;
 import com.salesSubsystem.service.ArticleService;
+import com.salesSubsystem.service.PDVService;
 import com.salesSubsystem.service.PriceListItemService;
 import com.salesSubsystem.service.PriceListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,10 @@ public class PriceListController {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private PDVService pdvService;
+
 
     @Autowired
     private PriceListRepository priceListRepository;
@@ -128,6 +134,7 @@ public class PriceListController {
         for(PriceListItem priceListItem : priceList.getItems()){
             newArticles.add(priceListItem.getArticle());
         }
+        // Date validFrom, double pdvAssessment, ArticleGroup articleGroups
             for (Article article : newArticles) {
                 for(ArticlePriceDto articlePriceDto : copyPriceListDto.getArticlePriceList()) {
                     if(articlePriceDto.getPrice() == article.getPriceListItem().getPrice()){
@@ -140,6 +147,9 @@ public class PriceListController {
                         lists.add(savedItem);
                         priceListItemService.savePriceListItem(savedItem);
                         company = article.getCompany();
+                        double pdvAssessment = copyPriceListDto.getPdv();
+                        PDV pdv = new PDV(new Date(), pdvAssessment, copiedArticle.getArticleGroup());
+                        pdvService.save(pdv);
                     }
             }
         }
