@@ -10,6 +10,6 @@ export const getAllCompanies =async ()=>{
 export const addCompany = async (company) => {
    return axios
    .post(endpointBaseUrl, company)
-   .then(res => { return res.data })
+   .then(res => { return res })
    .catch(error => { return error })
 }

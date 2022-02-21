@@ -23,7 +23,7 @@ function App() {
   const [unitOfMeasures, setUnitOfMeasures] = useState();
   const [articleGroups, setArticleGroups] = useState();
   const [priceLists, setPriceLists]= useState([]);
-  const [companies, setCompanies]= useState();
+  const [companies, setCompanies]= useState([]);
   useEffect(()=>{
     getAllArticles().then((article)=>setArticles(article));
     getAllUnitOfMeasures().then((unit)=>setUnitOfMeasures(unit));

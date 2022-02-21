@@ -10,7 +10,7 @@ const AddCompanyForm = () => {
 
   const onSubmit = async data => {
     const newRes = await addCompany(data)
-    if(newRes.response.status == 400){
+    if(newRes.status !== 200){
       setMessage(newRes.response.data.message)
       setShowToastFail(true)
     }
