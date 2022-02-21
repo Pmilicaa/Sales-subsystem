@@ -2,15 +2,7 @@ package com.salesSubsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "InvoiceItem")
@@ -47,12 +39,12 @@ public class InvoiceItem {
 	
 	@Column(name = "active")
 	private boolean active = true;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "articleId", referencedColumnName = "id")
 	@JsonBackReference(value="invoiceItems_article")
 	private Article article;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "outputInvoiceId", referencedColumnName = "id")
 	@JsonBackReference(value="invoiceItems_outputInvoice")

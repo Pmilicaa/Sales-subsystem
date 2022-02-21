@@ -11,6 +11,7 @@ const TopNavbar = () => {
             <Nav.Link href="/companies">Companies</Nav.Link>
             <Nav.Link href="/invoices">Invoices</Nav.Link>
             <Nav.Link href="/units">Units of measure</Nav.Link>
+            <Nav.Link href="/priceList">Price list</Nav.Link>
           </Nav>
       </Container>
     </Navbar>

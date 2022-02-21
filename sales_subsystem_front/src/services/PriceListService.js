@@ -5,13 +5,49 @@ export const getAllPrices =async ()=>{
    console.log(res)
    return res.data;
 }
-export const addPriceList =async (article,priceList)=>{
-   
+export const addPriceListItem =async (id,price)=>{
+    console.log(price);
+    const item={
+      id,
+      price
+    }
     return await axios
-    .post(`http://localhost:8080/articles/${article.id}/priceList`, 
-      priceList
+    .post(`http://localhost:8080/priceListItems`, 
+      item
     )
     .then(response => {
       return response.data;
     });
  }
+ export const addPriceList =async (articlePriceList)=>{
+  console.log(articlePriceList);
+ 
+  return await axios
+  .post(`http://localhost:8080/priceLists`, 
+  {articlePriceList}
+  )
+  .then(response => {
+    return response.data;
+  });
+}
+export const addCopyOfPriceLIst =async (priceList)=>{
+  console.log(priceList);
+ 
+  return await axios
+  .post(`http://localhost:8080/priceLists/pdv`, 
+  priceList
+  )
+  .then(response => {
+    return response.data;
+  });
+}
+export const getPriceList =async (id)=>{
+  console.log(id);
+ 
+  return await axios
+  .get(`http://localhost:8080/priceLists/${id}`
+  )
+  .then(response => {
+    return response.data;
+  });
+}

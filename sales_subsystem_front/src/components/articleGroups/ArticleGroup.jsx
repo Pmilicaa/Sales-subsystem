@@ -31,7 +31,7 @@ const ArticleGroup =({articleGroups})=>{
                    {articleGroups.map((group)=>
                     <tr>
                         <td>{group.name}</td>
-                        <td>{getCompanyPib(group)}</td>
+                        {/* <td>{getCompanyPib(group)}</td> */}
                     </tr>)}
                 </tbody>
             </Table>}

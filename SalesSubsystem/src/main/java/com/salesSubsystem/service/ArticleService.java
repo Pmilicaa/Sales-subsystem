@@ -31,8 +31,6 @@ public class ArticleService {
     }
     public Article saveArticle(Article article){
         articleRepository.save(article);
-        ArticleGroup group = articleGroupService.getArticleGroup(article.getArticleGroup().getId());
-        group.getArticles().add(group.getArticles().size(),article);
         return article;
     }
     public Article logicalDeleteArticle(Article article){

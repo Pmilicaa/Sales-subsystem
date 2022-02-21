@@ -1,6 +1,7 @@
 package com.salesSubsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -22,12 +23,16 @@ public class PDV {
 	private double pdvAssessment;
 
 	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "article_group_pdv", referencedColumnName = "id", nullable = false)
-	@JsonBackReference
+	@JsonManagedReference(value="articleGroup_pdv")
 	private ArticleGroup articleGroups;
 
 	public PDV(long id, Date validFrom, double pdvAssessment, ArticleGroup articleGroups) {
 		this.id = id;
+		this.validFrom = validFrom;
+		this.pdvAssessment = pdvAssessment;
+		this.articleGroups = articleGroups;
+	}
+	public PDV(Date validFrom, double pdvAssessment, ArticleGroup articleGroups) {
 		this.validFrom = validFrom;
 		this.pdvAssessment = pdvAssessment;
 		this.articleGroups = articleGroups;

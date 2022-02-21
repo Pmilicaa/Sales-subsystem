@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getAllArticleGroups =async ()=>{
     const res = await axios.get('http://localhost:8080/articleGroups')
-    console.log(res)
+    console.log(res.data)
     return res.data;
  }
  export const addArticleGroup =async (group)=>{
