@@ -13,7 +13,6 @@ const AddArticleGroup = (props) => {
     };
     const handleOnChange = (e) => {
         console.log(e.target.value)
-
     };
     return (<>
         <h1 className="center">Add Article Group</h1>

@@ -1,12 +1,14 @@
 package com.salesSubsystem.controller;
 
 import com.salesSubsystem.dto.ArticlePriceDto;
+import com.salesSubsystem.dto.CopyPriceListDto;
 import com.salesSubsystem.dto.PriceListDto;
 import com.salesSubsystem.dto.PriceListItemDto;
 import com.salesSubsystem.dto.PriceListRequestDto;
 import com.salesSubsystem.dto.PriceListResponseDto;
 import com.salesSubsystem.model.Article;
 import com.salesSubsystem.model.Company;
+import com.salesSubsystem.model.InvoiceItem;
 import com.salesSubsystem.model.PriceList;
 import com.salesSubsystem.model.PriceListItem;
 import com.salesSubsystem.repository.PriceListRepository;
@@ -111,6 +113,39 @@ public class PriceListController {
         PriceList priceList= new PriceList(System.currentTimeMillis(),lists,company);
         priceListService.savePriceList(priceList);
         return new ResponseEntity<PriceList>(priceList,HttpStatus.OK);
+    }
+//	public Article(String name, String description, UnitOfMeasure unitOfMeasure, PriceListItem priceListItem,
+//	ArticleGroup articleGroup, List<InvoiceItem> invoiceItems, Company company) {
+    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+    @PostMapping(path="/priceLists/pdv")
+    public ResponseEntity<PriceList> copyPriceList(@RequestBody CopyPriceListDto copyPriceListDto){
+        System.out.print(copyPriceListDto);
+        PriceList priceList = priceListService.getPriceList(copyPriceListDto.getPriceListId());
+        List<PriceListItem> lists = new ArrayList<>();
+        List<Article> articles = articleService.getAllArticles();
+        Company company = null;
+        List<Article> newArticles = new ArrayList<>();
+        for(PriceListItem priceListItem : priceList.getItems()){
+            newArticles.add(priceListItem.getArticle());
+        }
+            for (Article article : newArticles) {
+                for(ArticlePriceDto articlePriceDto : copyPriceListDto.getArticlePriceList()) {
+                    if(articlePriceDto.getPrice() == article.getPriceListItem().getPrice()){
+                        double priceWithPDV = priceListService.getPriceWithPDV(articlePriceDto.getPrice(), copyPriceListDto.getPdv(), copyPriceListDto.getPdv_type());
+                        PriceListItem item = new PriceListItem(priceWithPDV, article);
+                        PriceListItem savedItem = priceListItemService.savePriceListItem(item);
+                        Article copiedArticle = new Article(article.getName(), article.getDescription(), article.getUnitOfMeasure(), savedItem, article.getArticleGroup(), new ArrayList<InvoiceItem>(), article.getCompany());
+                        articleService.saveArticle(copiedArticle);
+                        savedItem.setArticle(copiedArticle);
+                        lists.add(savedItem);
+                        priceListItemService.savePriceListItem(savedItem);
+                        company = article.getCompany();
+                    }
+            }
+        }
+        PriceList copiedPriceList= new PriceList(System.currentTimeMillis(),lists,company);
+        priceListService.savePriceList(copiedPriceList);
+        return new ResponseEntity<PriceList>(copiedPriceList,HttpStatus.OK);
     }
     
 }

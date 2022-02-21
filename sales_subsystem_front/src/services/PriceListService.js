@@ -30,6 +30,17 @@ export const addPriceListItem =async (id,price)=>{
     return response.data;
   });
 }
+export const addCopyOfPriceLIst =async (priceList)=>{
+  console.log(priceList);
+ 
+  return await axios
+  .post(`http://localhost:8080/priceLists/pdv`, 
+  priceList
+  )
+  .then(response => {
+    return response.data;
+  });
+}
 export const getPriceList =async (id)=>{
   console.log(id);
  

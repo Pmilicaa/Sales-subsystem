@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Button, Form, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import CopyPriceList from "./CopyPriceList";
 import OnePriceList from "./OnePriceList";
 
 const PriceLists = (props) => {
     let navigate = useNavigate();
     const [ onePriceVisible, setOnePriceVisible ] = useState(false);
+    const [ copyPriceList, setCopyPriceList ] = useState(false);
     const [ selectedPriceList, setSelectedPriceList ] = useState()
     const getDate = ()=>{
         let date;
@@ -21,6 +23,10 @@ const PriceLists = (props) => {
     const handleOnView = (id) => {
         setSelectedPriceList(id)
         setOnePriceVisible(!onePriceVisible)
+    }
+    const handleOnCopy = (id) => {
+        setSelectedPriceList(id);
+        setCopyPriceList(!copyPriceList);
     }
 
     return (<>
@@ -38,6 +44,7 @@ const PriceLists = (props) => {
                         <td>{getDate()}</td>
                         <td>{list.pib}</td>
                         <td><Button onClick={()=>handleOnView(list.id)}>View</Button></td>
+                        <td><Button onClick={()=>handleOnCopy(list.id)}>Copy</Button></td>
                     </tr>
                    
                 )}
@@ -49,6 +56,8 @@ const PriceLists = (props) => {
         }
         <div className="component"> <button type="submit" className="btn-primary" onClick={handleClick}>Add price list</button></div>
         { onePriceVisible && <OnePriceList id={selectedPriceList}/>}
+        { copyPriceList && <CopyPriceList id={selectedPriceList}/>}
+
     </>);
 }
 export default PriceLists;
