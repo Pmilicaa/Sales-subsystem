@@ -2,9 +2,21 @@ package com.salesSubsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.salesSubsystem.dto.CompanyDto;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "Company")
@@ -70,6 +82,34 @@ public class Company {
         this.articleGroups = articleGroups;
         this.outputInvoices = outputInvoices;
     }
+
+	public Company(String address, String contact, long PIB, long MIB, boolean active, List<BusinessYear> businessYears, List<BusinessPartner> businessPartners, List<PriceList> priceLists, List<Article> articles, List<ArticleGroup> articleGroups, List<OutputInvoice> outputInvoices) {
+		this.address = address;
+		this.contact = contact;
+		this.PIB = PIB;
+		this.MIB = MIB;
+		this.active = active;
+		this.businessYears = businessYears;
+		this.businessPartners = businessPartners;
+		this.priceLists = priceLists;
+		this.articles = articles;
+		this.articleGroups = articleGroups;
+		this.outputInvoices = outputInvoices;
+	}
+
+	public Company(CompanyDto companyDto){
+		this.id = 0L;
+		this.address = companyDto.getAddress();
+		this.contact = companyDto.getContact();
+		this.PIB = companyDto.getPib();
+		this.MIB = companyDto.getMib();
+		this.businessYears = new ArrayList<>();
+		this.businessPartners = new ArrayList<>();
+		this.priceLists = new ArrayList<>();
+		this.articles = new ArrayList<>();
+		this.articleGroups = new ArrayList<>();
+		this.outputInvoices = new ArrayList<>();
+	}
 
     public Company() {
     }

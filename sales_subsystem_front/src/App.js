@@ -12,6 +12,8 @@ import { addArticleGroup, getAllArticleGroups } from './services/ArticleGroupSer
 import { getAllPrices } from './services/PriceListService';
 import { getAllCompanies } from './services/CompanyService';
 import AddArticleGroup from './components/articleGroups/AddArticleGroup';
+import BusinessPartnerPage from './pages/BusinessPartnerPage';
+import CompanyPage from './pages/CompanyPage';
 import PriceLists from './components/priceList/PriceLists';
 import AddPriceList from './components/priceList/AddPriceList';
 import OnePriceList from './components/priceList/OnePriceList';
@@ -42,7 +44,8 @@ function App() {
       <BrowserRouter>
         <Routes>
         <Route path="/articles" element={<Articles articles={articles} articleGroups={articleGroups} companies={companies}/>}/>
-          <Route path="/companies" />
+          <Route path="/companies" element={<CompanyPage companies={companies}/>}/>
+          <Route path="/business" element={<BusinessPartnerPage companies={companies} />}/>
           <Route path="/invoices" />
           <Route path="/addPriceList" element={<AddPriceList articles={articles} articleGroups={articleGroups} companies={companies}/>}/>
           <Route path="/priceList" element={<PriceLists priceLists={priceLists} articles={articles}/>}/>
