@@ -24,7 +24,7 @@ public class BusinessPartner {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Long id;
+	private long id;
 	
 	@Column(name = "namePartner")
 	private String namePartner;
@@ -57,124 +57,95 @@ public class BusinessPartner {
 	private List<OutputInvoice> outputInvoices;
 	
 	
-	public BusinessPartner(Long id, String namePartner, String address, String contact, String eMail, 
+	public BusinessPartner(long id, String namePartner, String address, String contact, String eMail,
 							long pIB, long mIB, boolean active, Company company, List<OutputInvoice> outputInvoices) {
 		this.id = id;
 		this.namePartner = namePartner;
 		this.address = address;
 		this.contact = contact;
 		this.eMail = eMail;
-		PIB = pIB;
-		MIB = mIB;
+		this.PIB = pIB;
+		this.MIB = mIB;
 		this.active = active;
 		this.company = company;
 		this.outputInvoices = outputInvoices;
 	}
 
+	public BusinessPartner(String namePartner, String address, String contact, String eMail, long PIB, long MIB, boolean active, Company company, List<OutputInvoice> outputInvoices) {
+		this.namePartner = namePartner;
+		this.address = address;
+		this.contact = contact;
+		this.eMail = eMail;
+		this.PIB = PIB;
+		this.MIB = MIB;
+		this.active = active;
+		this.company = company;
+		this.outputInvoices = outputInvoices;
+	}
 
 	public BusinessPartner() {
 	}
-
 
 	public long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 	public String getNamePartner() {
 		return namePartner;
 	}
-
-
 	public void setNamePartner(String namePartner) {
 		this.namePartner = namePartner;
 	}
-
-
 	public String getAddress() {
 		return address;
 	}
-
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
 	public String getContact() {
 		return contact;
 	}
-
-
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
-
-
 	public String geteMail() {
 		return eMail;
 	}
-
-
 	public void seteMail(String eMail) {
 		this.eMail = eMail;
 	}
-
-
 	public long getPIB() {
 		return PIB;
 	}
-
-
 	public void setPIB(long pIB) {
 		PIB = pIB;
 	}
-
-
 	public long getMIB() {
 		return MIB;
 	}
-
-
 	public void setMIB(long mIB) {
 		MIB = mIB;
 	}
-
-
 	public Company getCompany() {
 		return company;
 	}
-
-
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-
-
 	public List<OutputInvoice> getOutputInvoices() {
 		return outputInvoices;
 	}
-
-
 	public void setOutputInvoices(List<OutputInvoice> outputInvoices) {
 		this.outputInvoices = outputInvoices;
 	}
-
-
 	public boolean isActive() {
 		return active;
 	}
-
-
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-
-	
 }
 

@@ -54,7 +54,7 @@ public class ArticleGroupController {
     public ResponseEntity<ArticleGroup> addArticleGroups(@RequestBody ArticleGroupDto articleGroupDto){
         Company company = companyService.getCompanyByPib(articleGroupDto.getPib());
         List<Article> articles = new ArrayList<>();
-        ArticleGroup group = new ArticleGroup(articleGroupDto.getName(),articles, null, company);
+        ArticleGroup group = new ArticleGroup(articleGroupDto.getName(),articles, null);
         return new ResponseEntity<ArticleGroup>(articleGroupService.saveArticleGroup(group), HttpStatus.OK);
     }
 }
