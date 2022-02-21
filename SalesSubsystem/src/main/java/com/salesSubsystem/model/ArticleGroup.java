@@ -1,6 +1,7 @@
 package com.salesSubsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -26,12 +27,12 @@ public class ArticleGroup {
 	@JsonBackReference (value="articleGroup_article")
 	private List<Article> articles;
 
+
 	@OneToMany(
-			mappedBy = "id",
-			fetch = FetchType.LAZY,
+			fetch = FetchType.EAGER,
 			cascade = CascadeType.ALL
 	)
-	@JsonManagedReference
+	@JsonBackReference(value="articleGroup_pdv")
 	private List<PDV> pdvs;
 
 	@ManyToOne(cascade= CascadeType.ALL)

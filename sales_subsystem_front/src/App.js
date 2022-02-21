@@ -29,11 +29,11 @@ function App() {
     getAllPrices().then((price)=>setPriceLists(price));
     getAllCompanies().then((company)=>setCompanies(company));
   },[])
-  console.log(articles);
-  console.log(unitOfMeasures);
-  console.log(articleGroups);
-  console.log(priceLists);
-  console.log(companies);
+  // console.log(articles);
+  // console.log(unitOfMeasures);
+  // console.log(articleGroups);
+  // console.log(priceLists);
+  // console.log(companies);
 
   return (
     <>

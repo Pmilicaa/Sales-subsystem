@@ -5,11 +5,13 @@ import com.salesSubsystem.dto.ArticleGroupDto;
 import com.salesSubsystem.model.Article;
 import com.salesSubsystem.model.ArticleGroup;
 import com.salesSubsystem.model.Company;
+import com.salesSubsystem.model.PDV;
 import com.salesSubsystem.model.PriceList;
 import com.salesSubsystem.model.UnitOfMeasure;
 import com.salesSubsystem.service.ArticleGroupService;
 import com.salesSubsystem.service.ArticleService;
 import com.salesSubsystem.service.CompanyService;
+import com.salesSubsystem.service.PDVService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +36,9 @@ public class ArticleGroupController {
     private CompanyService companyService;
 
     @Autowired
+    private PDVService pdvService;
+
+    @Autowired
     private ArticleService articleService;
 
     @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
@@ -54,7 +59,8 @@ public class ArticleGroupController {
     public ResponseEntity<ArticleGroup> addArticleGroups(@RequestBody ArticleGroupDto articleGroupDto){
         Company company = companyService.getCompanyByPib(articleGroupDto.getPib());
         List<Article> articles = new ArrayList<>();
-        ArticleGroup group = new ArticleGroup(articleGroupDto.getName(),articles, null);
+        List<PDV> pdvs = new ArrayList<>();
+        ArticleGroup group = new ArticleGroup(articleGroupDto.getName(),articles,pdvs, null);
         return new ResponseEntity<ArticleGroup>(articleGroupService.saveArticleGroup(group), HttpStatus.OK);
     }
 }
