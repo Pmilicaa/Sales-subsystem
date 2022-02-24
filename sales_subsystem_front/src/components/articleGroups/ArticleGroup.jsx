@@ -1,16 +1,20 @@
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const ArticleGroup =({articleGroups})=>{
+const ArticleGroup =({articleGroups, companies})=>{
     let navigate = useNavigate()
-    console.log(articleGroups)
     const getCompanyPib=(group)=>{
         let pibCompany;
-        for (let index = 0; index < articleGroups.length; index++) {
-            const pib = articleGroups[index].company.pib;
-            if(group.company.pib === pib ){
-                 pibCompany = articleGroups[index].company.pib;
-            }
+        for (let index = 0; index < companies.length; index++) {
+            const company = companies[index];
+           for (let index = 0; index < company.articleGroups.length; index++) {
+               const articleGroup = company.articleGroups[index];
+               if(articleGroup.id === group.id){
+                    pibCompany = company.pib
+               }else{
+                   pibCompany='no company'
+               }
+           }
             
         }return pibCompany;
     }
@@ -31,7 +35,7 @@ const ArticleGroup =({articleGroups})=>{
                    {articleGroups.map((group)=>
                     <tr>
                         <td>{group.name}</td>
-                        {/* <td>{getCompanyPib(group)}</td> */}
+                        <td>{getCompanyPib(group)}</td>
                     </tr>)}
                 </tbody>
             </Table>}

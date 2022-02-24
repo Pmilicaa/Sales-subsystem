@@ -1,6 +1,7 @@
 package com.salesSubsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
@@ -17,7 +18,7 @@ public class InvoiceItem {
 	private int serialNumbAccItem;
 	
 	@Column(name = "amount")
-	private double amount;
+	private int amount;
 	
 	@Column(name = "discount")
 	private double discount;
@@ -31,28 +32,23 @@ public class InvoiceItem {
 	@Column(name = "percentagePDV")
 	private double percentagePDV;
 	
-	@Column(name = "amountPDV")
-	private double amountPDV;
-	
 	@Column(name = "total")
 	private double total;
 	
 	@Column(name = "active")
 	private boolean active = true;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "articleId", referencedColumnName = "id")
+	@ManyToOne(cascade= CascadeType.ALL)
 	@JsonBackReference(value="invoiceItems_article")
 	private Article article;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "outputInvoiceId", referencedColumnName = "id")
+	@ManyToOne(cascade= CascadeType.ALL)
 	@JsonBackReference(value="invoiceItems_outputInvoice")
 	private OutputInvoice outputInvoice;
 	
 	
-	public InvoiceItem(Long id, int serialNumbAccItem, double amount, double discount, double unitPrice, double base,
-			double percentagePDV, double amountPDV, double total, boolean active, Article article, OutputInvoice outputInvoice) {
+	public InvoiceItem(Long id, int serialNumbAccItem, int amount, double discount, double unitPrice, double base,
+			double percentagePDV, double total, boolean active, Article article, OutputInvoice outputInvoice) {
 		this.id = id;
 		this.serialNumbAccItem = serialNumbAccItem;
 		this.amount = amount;
@@ -60,23 +56,30 @@ public class InvoiceItem {
 		this.unitPrice = unitPrice;
 		this.base = base;
 		this.percentagePDV = percentagePDV;
-		this.amountPDV = amountPDV;
+		this.total = total;
+		this.active = active;
+		this.article = article;
+		this.outputInvoice = outputInvoice;
+	}
+	public InvoiceItem(int serialNumbAccItem, int amount, double discount, double unitPrice, double base,
+					   double percentagePDV, double total, boolean active, Article article, OutputInvoice outputInvoice) {
+		this.serialNumbAccItem = serialNumbAccItem;
+		this.amount = amount;
+		this.discount = discount;
+		this.unitPrice = unitPrice;
+		this.base = base;
+		this.percentagePDV = percentagePDV;
 		this.total = total;
 		this.active = active;
 		this.article = article;
 		this.outputInvoice = outputInvoice;
 	}
 
-
-	public InvoiceItem() {
-		
-	}
-
+	public InvoiceItem() {}
 
 	public long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
@@ -98,7 +101,7 @@ public class InvoiceItem {
 	}
 
 
-	public void setAmount(double amount) {
+	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 
@@ -140,16 +143,6 @@ public class InvoiceItem {
 
 	public void setPercentagePDV(double percentagePDV) {
 		this.percentagePDV = percentagePDV;
-	}
-
-
-	public double getAmountPDV() {
-		return amountPDV;
-	}
-
-
-	public void setAmountPDV(double amountPDV) {
-		this.amountPDV = amountPDV;
 	}
 
 

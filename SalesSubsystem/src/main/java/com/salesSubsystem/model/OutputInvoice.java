@@ -52,21 +52,18 @@ public class OutputInvoice {
 	private Status status;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "companyId", referencedColumnName = "id")
 	@JsonBackReference(value="company_outputInvoice")
 	private Company company;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "outputInvoice")
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonManagedReference(value="invoiceItems_outputInvoice")
 	private List<InvoiceItem> invoiceItems;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "businessYearId", referencedColumnName = "id")
 	@JsonBackReference(value="outputInvoices_businessYears")
 	private BusinessYear businessYear;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "businessPartnerId", referencedColumnName = "id")
 	@JsonBackReference(value="outputInvoices_businessPartner")
 	private BusinessPartner businessPartner;
 	
@@ -75,6 +72,22 @@ public class OutputInvoice {
 			double totalPDV, double totalPayment, boolean active, Status status, Company company, 
 			List<InvoiceItem> invoiceItems, BusinessYear businessYear, BusinessPartner businessPartner) {
 		this.id = id;
+		this.numberAccount = numberAccount;
+		this.releaseDate = releaseDate;
+		this.valueDate = valueDate;
+		this.totalBase = totalBase;
+		this.totalPDV = totalPDV;
+		this.totalPayment = totalPayment;
+		this.active = active;
+		this.status = status;
+		this.company = company;
+		this.invoiceItems = invoiceItems;
+		this.businessYear = businessYear;
+		this.businessPartner = businessPartner;
+	}
+	public OutputInvoice(int numberAccount, Date releaseDate, Date valueDate, double totalBase,
+						 double totalPDV, double totalPayment, boolean active, Status status, Company company,
+						 List<InvoiceItem> invoiceItems, BusinessYear businessYear, BusinessPartner businessPartner) {
 		this.numberAccount = numberAccount;
 		this.releaseDate = releaseDate;
 		this.valueDate = valueDate;

@@ -61,6 +61,9 @@ public class ArticleGroupController {
         List<Article> articles = new ArrayList<>();
         List<PDV> pdvs = new ArrayList<>();
         ArticleGroup group = new ArticleGroup(articleGroupDto.getName(),pdvs);
-        return new ResponseEntity<ArticleGroup>(articleGroupService.saveArticleGroup(group), HttpStatus.OK);
+        ArticleGroup newGroup = articleGroupService.saveArticleGroup(group);
+        company.getArticleGroups().add(newGroup);
+        companyService.saveCompany(company);
+        return new ResponseEntity<ArticleGroup>(newGroup, HttpStatus.OK);
     }
 }

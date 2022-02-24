@@ -9,9 +9,10 @@ const TopNavbar = () => {
             <Nav.Link href="/business">Business partners</Nav.Link>
             <Nav.Link href="/articles">Articles</Nav.Link>
             <Nav.Link href="/companies">Companies</Nav.Link>
-            <Nav.Link href="/invoices">Invoices</Nav.Link>
             <Nav.Link href="/units">Units of measure</Nav.Link>
             <Nav.Link href="/priceList">Price list</Nav.Link>
+            <Nav.Link href="/outputInvoices">Output invoices</Nav.Link>
+
           </Nav>
       </Container>
     </Navbar>

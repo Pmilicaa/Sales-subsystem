@@ -36,11 +36,10 @@ public class BusinessYear {
 	private boolean active = true;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "companyId", referencedColumnName = "id")
 	@JsonBackReference(value="company_businessYears")
 	private Company company;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessYear")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonManagedReference(value="outputInvoices_businessYears")
 	private List<OutputInvoice> outputInvoices;
 	
