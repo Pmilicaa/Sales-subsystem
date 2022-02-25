@@ -2,18 +2,14 @@ import { addArticleGroup } from "../../services/ArticleGroupService";
 
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import './index.css'
 const AddArticleGroup = (props) => {
     const { register, handleSubmit, getValues } = useForm({
     });
     const onSubmit = data => {
-        console.log(data)
         addArticleGroup(data);
     };
-    const handleOnChange = (e) => {
-        console.log(e.target.value)
-    };
+
     return (<>
         <h1 className="center">Add Article Group</h1>
         <Form onSubmit={handleSubmit(onSubmit)} className="component">

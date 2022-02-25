@@ -29,8 +29,8 @@ const InvoiceItemPrice = ({ article, addArticleToPriceList,setLockedPriceListIte
         <>
            <ListGroup.Item action className="box">{article.name}
              <Form.Control onChange={handleOnChangeDiscount} type="number" placeholder="Enter discount" />
-             <Form.Control onChange={handleOnChangeAmount} type="number" placeholder="Enter amount" />
-            {isLocked ? <Button onClick={handleLock} disabled>Lock price</Button> :<Button onClick={handleLock} >Lock price</Button> }
+             <Form.Control className="ms-2" onChange={handleOnChangeAmount} type="number" placeholder="Enter amount" />
+            {isLocked ? <Button className="ms-2" onClick={handleLock} disabled>Lock price</Button> :<Button className="ms-2" onClick={handleLock} >Lock price</Button> }
            </ListGroup.Item>
         </>
     )

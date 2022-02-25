@@ -8,7 +8,9 @@ import InvoiceItemPrice from "../invoiceItem/InvoiceItemPrice";
 import OnePriceList from "../priceList/OnePriceList";
 import OutputInvoice from "./OutputInvoice";
 import PriceListWithArticles from "./PriceListWithArticles";
-const AddOutputInvoice =(props)=>{
+import { formatMillis } from "../../utils/time";
+
+const AddOutputInvoice =({ priceLists })=>{
     const [ onePriceVisible, setOnePriceVisible ] = useState(false);
     const [ copyPriceList, setCopyPriceList ] = useState(false);
     const [ selectedPriceList, setSelectedPriceList ] = useState()
@@ -22,32 +24,31 @@ const AddOutputInvoice =(props)=>{
 
     }
 
-    const getDate = (priceList)=>{
-        const date = priceList.validDate;
-        var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-        return (new Date(date).toLocaleDateString('en-US', options));
-    }
-    return(<>
-        {props.priceLists && <><Table className="table" striped bordered hover>
-               
-                <tbody>
-                    {props.priceLists.map((list) =>
+    return(
+        <>
+            {
+                priceLists && 
+                <Table className="table" striped bordered hover>
+                    <thead className="thead-dark">
                         <tr>
-                            <td>{getDate(list)}</td>
-                            <td>{list.pib}</td>
-                            <td><Button onClick={()=>handleOnView(list.id)}>View</Button></td>
+                            <th scope="col">Price list date</th>
+                            <th scope="col">Price list company</th>
+                            <th scope="col">Price list options</th>
                         </tr>
-                       
-                    )}
-                </tbody>
-    
-            </Table>
-       
-            </>
+                    </thead>
+                    <tbody>
+                        {priceLists.map((list) =>
+                            <tr key={list.pib}>
+                                <td>{formatMillis(list.validDate)}</td>
+                                <td>{list.pib}</td>
+                                <td><Button onClick={()=>handleOnView(list.id)}>View</Button></td>
+                            </tr>
+                        )}
+                    </tbody>
+                </Table>
             }
-{onePriceVisible && <PriceListWithArticles id={selectedPriceList}/> }
-  
-    
-    </>)
+            {onePriceVisible && <PriceListWithArticles id={selectedPriceList} companyPib={selectedPriceList.pib}/> }
+        </>
+    )
 }
 export default AddOutputInvoice;

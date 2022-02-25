@@ -1,15 +1,15 @@
 package com.salesSubsystem.dto;
 
-public class OutputInvoiceDto {
+public class AddInvoiceItemDto {
     private long articleId;
     private int amount;
     private double discount;
     private double price;
 
-    public OutputInvoiceDto() {
+    public AddInvoiceItemDto() {
     }
 
-    public OutputInvoiceDto(long articleId, int amount, double discount,  double price) {
+    public AddInvoiceItemDto(long articleId, int amount, double discount, double price) {
         this.articleId = articleId;
         this.amount = amount;
         this.discount = discount;

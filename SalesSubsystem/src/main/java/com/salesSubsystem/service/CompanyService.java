@@ -30,6 +30,10 @@ public class CompanyService {
 	public Company saveCompany(Company company) {
 		return companyRepository.save(company);
 	}
+
+	public Company findByPriceListsId(long priceListId){
+		return companyRepository.findByPriceLists_Id(priceListId);
+	}
 	
 	public void removeCompany(Company company) {
 		//company.setActive(false);

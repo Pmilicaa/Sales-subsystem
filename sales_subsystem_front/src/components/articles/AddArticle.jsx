@@ -1,6 +1,5 @@
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import './AddArticles.css'
 import { addArticle } from "../../services/ArticleService";
@@ -25,8 +24,7 @@ const AddArticle = (props) => {
             .min(2, 'PIB must be at least 2 characters')
             .max(200, 'PIB must not exceed 200 characters'),
     });
-    const { register, handleSubmit } = useForm({
-    });
+    const { register, handleSubmit } = useForm({});
 
     const getUomId = (uom) => {
         let idUom;
@@ -47,11 +45,7 @@ const AddArticle = (props) => {
     const onSubmit = data => {
         const idUom = getUomId(data.uom);
         const idGroup = getGroupId(data.group);
-        addArticle(data.name, data.description, data.price, idUom, idGroup, data.pib); console.log(data)
-    };
-    const handleOnChange = (e) => {
-        console.log(e.target.value)
-        setValue(e.target.value);
+        addArticle(data.name, data.description, data.price, idUom, idGroup, data.pib);
     };
     return (<>
         <h1 className="center">Add Article</h1>

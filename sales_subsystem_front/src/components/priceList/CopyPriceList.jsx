@@ -3,6 +3,7 @@ import { Button, Form, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { getPriceList } from "../../services/PriceListService";
 import CopyPriceListWithPDV from "./CopyPriceListWithPDV";
+import { formatMillis } from "../../utils/time";
 
 const CopyPriceList = (props) => {
     const [priceList, setPriceList]= useState([]);
@@ -10,11 +11,7 @@ const CopyPriceList = (props) => {
         getPriceLists(props.id);
     }
     ,[]);
-    const getDate = (date) => {
-        var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-        return (new Date(date).toLocaleDateString('en-US', options));
-       
-    }
+
     const getPriceLists = (id)=>{
     console.log(id);
        const prices =  getPriceList(id).then((price)=>setPriceList(price));
@@ -34,7 +31,7 @@ const CopyPriceList = (props) => {
             <tbody>
             {priceList.map((price)=>
             <tr>
-            <td>{getDate(price.validDate)}</td>
+            <td>{formatMillis(price.validDate)}</td>
             <td>{price.pib}</td>
         </tr>)
     }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { getPriceList } from "../../services/PriceListService";
+import { formatMillis } from "../../utils/time";
 
 const InvoiceItem = (props)=>{
     const [priceList, setPriceList]= useState([]);
@@ -9,11 +10,7 @@ const InvoiceItem = (props)=>{
     }
     ,[]);
     console.log(props.id);
-    const getDate = (date) => {
-        var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-        return (new Date(date).toLocaleDateString('en-US', options));
-       
-    }
+    
     const getPriceLists = (id)=>{
     console.log(id);
        const prices =  getPriceList(id).then((price)=>setPriceList(price));
@@ -36,7 +33,7 @@ const InvoiceItem = (props)=>{
             <tbody>
             {priceList.map((price)=>
             <tr>
-            <td>{getDate(price.validDate)}</td>
+            <td>{formatMillis(price.validDate)}</td>
             <td>{price.articleName}</td>
             <td>{price.articleGroupName}</td>
             <td>{price.price}</td>
