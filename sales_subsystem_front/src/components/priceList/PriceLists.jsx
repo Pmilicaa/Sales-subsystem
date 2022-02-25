@@ -3,18 +3,14 @@ import { Button, Form, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CopyPriceList from "./CopyPriceList";
 import OnePriceList from "./OnePriceList";
+import { formatMillis } from "../../utils/time";
 
 const PriceLists = (props) => {
     let navigate = useNavigate();
     const [ onePriceVisible, setOnePriceVisible ] = useState(false);
     const [ copyPriceList, setCopyPriceList ] = useState(false);
     const [ selectedPriceList, setSelectedPriceList ] = useState()
-    const getDate = (priceList)=>{
-        console.log(priceList)
-        const date = priceList.validDate;
-        var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-        return (new Date(date).toLocaleDateString('en-US', options));
-    }
+
     const handleClick = () => {
         navigate('/addPriceList', { replace: true });
     }
@@ -39,7 +35,7 @@ const PriceLists = (props) => {
             <tbody>
                 {props.priceLists.map((list) =>
                     <tr>
-                        <td>{getDate(list)}</td>
+                        <td>{formatMillis(list.validDate)}</td>
                         <td>{list.pib}</td>
                         <td><Button onClick={()=>handleOnView(list.id)}>View</Button></td>
                         <td><Button onClick={()=>handleOnCopy(list.id)}>Copy</Button></td>

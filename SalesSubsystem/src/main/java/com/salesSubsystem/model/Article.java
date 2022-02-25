@@ -39,7 +39,6 @@ public class Article {
 	private ArticleGroup articleGroup;
 
 	@OneToMany(
-			mappedBy = "id",
 			fetch = FetchType.LAZY,
 			cascade = CascadeType.ALL
 	)

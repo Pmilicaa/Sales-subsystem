@@ -5,6 +5,7 @@ import java.util.Date;
 public class PriceListResponseDto {
     private long validDate;
     private double price;
+    private long articleId;
     private String articleName;
     private String articleGroupName;
     private long pib;
@@ -12,12 +13,21 @@ public class PriceListResponseDto {
     public PriceListResponseDto() {
     }
 
-    public PriceListResponseDto(long validDate, double price, String articleName, String articleGroupName, long pib) {
+    public PriceListResponseDto(long validDate, double price, long articleId, String articleName, String articleGroupName, long pib) {
         this.validDate = validDate;
         this.price = price;
+        this.articleId = articleId;
         this.articleName = articleName;
         this.articleGroupName = articleGroupName;
         this.pib = pib;
+    }
+
+    public long getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(long articleId) {
+        this.articleId = articleId;
     }
 
     public long getValidDate() {

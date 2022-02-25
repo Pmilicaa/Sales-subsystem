@@ -48,11 +48,10 @@ public class BusinessPartner {
 	private boolean active = true;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "companyId", referencedColumnName = "id")
 	@JsonBackReference(value="company_businessPartners")
 	private Company company;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "businessPartner")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonManagedReference(value="outputInvoices_businessPartner")
 	private List<OutputInvoice> outputInvoices;
 	

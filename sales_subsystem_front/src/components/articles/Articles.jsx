@@ -60,7 +60,7 @@ const Articles = ({ articles, articleGroups, companies }) => {
             </tr>
         </thead>
                     {allArticles.map((article) =>
-                       <Article article={article} handleShow={handleShow} setSelectedArticle={setSelectedArticle} />
+                       <Article article={article} handleShow={handleShow} setSelectedArticle={setSelectedArticle} companies={companies}/>
                      ) }
             </Table>}
             <Modal

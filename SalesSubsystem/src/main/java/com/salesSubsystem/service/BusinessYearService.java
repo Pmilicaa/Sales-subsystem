@@ -2,6 +2,7 @@ package com.salesSubsystem.service;
 
 import java.util.List;
 
+import com.salesSubsystem.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +23,14 @@ public class BusinessYearService {
 		return businessYearRepository.findById(id).get();
 	}
 	
-	public BusinessYear saveBusinessYear(BusinessYear businesYear) {
-		return businessYearRepository.save(businesYear);
+	public BusinessYear saveBusinessYear(BusinessYear businessYear) {
+		return businessYearRepository.save(businessYear);
 	}
-	
+
+	public BusinessYear findCurrentYearByCompany(Company company){
+		return businessYearRepository.findFirstByCompanyOrderByYearDesc(company);
+	}
+
 	public void removeBusinessYear(BusinessYear businesYear) {
 		//businesYear.setActive(false);
 		//businessYearRepository.save(businesYear);

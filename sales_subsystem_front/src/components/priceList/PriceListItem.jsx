@@ -1,6 +1,0 @@
-const PriceListItem = ()=>{
-    return(<>
-    
-    
-    </>)
-}

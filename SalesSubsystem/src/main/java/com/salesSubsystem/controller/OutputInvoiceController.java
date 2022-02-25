@@ -1,49 +1,57 @@
 package com.salesSubsystem.controller;
 
+import com.salesSubsystem.dto.AddInvoiceDto;
+import com.salesSubsystem.model.OutputInvoice;
+import com.salesSubsystem.service.ArticleService;
+import com.salesSubsystem.service.InvoiceItemService;
+import com.salesSubsystem.service.OutputInvoiceService;
+import com.salesSubsystem.service.PDVService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.salesSubsystem.model.BusinessYear;
-import com.salesSubsystem.model.OutputInvoice;
-import com.salesSubsystem.service.OutputInvoiceService;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class OutputInvoiceController {
 
 	@Autowired
 	private OutputInvoiceService outputInvoiceService;
-	
-	@GetMapping(path = "/outputinvoices")
+
+	@Autowired
+	private ArticleService articleService;
+
+	@Autowired
+	private InvoiceItemService invoiceItemService;
+
+	@Autowired
+	private PDVService pdvService;
+
+	@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+	@GetMapping(path = "/outputInvoices")
 	public @ResponseBody ResponseEntity<?> getAllOutputInvoices() {
 		return new ResponseEntity(outputInvoiceService.getAllOutputInvoices(), HttpStatus.OK);
 	}
-	
-	@GetMapping(path = "/outputinvoices/{outputinvoiceId}")
-	public ResponseEntity<?> getOutputInvoice(@PathVariable("outputinvoiceId") Long outputinvoiceId) {
-		OutputInvoice outputInvoice = outputInvoiceService.getOutputInvoice(outputinvoiceId);
+	@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+	@GetMapping(path = "/outputInvoices/{id}")
+	public ResponseEntity<?> getOutputInvoice(@PathVariable("id") Long id) {
+		OutputInvoice outputInvoice = outputInvoiceService.getOutputInvoice(id);
 		if(outputInvoice == null) {
 			return new ResponseEntity<OutputInvoice>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity(outputInvoice, HttpStatus.OK);
 	}
-	
-	@PostMapping(path = "/outputinvoices")
-	public @ResponseBody ResponseEntity<?> saveOutputInvoice(@RequestBody OutputInvoice outputInvoice) {
-		OutputInvoice newOutputInvoice = outputInvoiceService.saveOutputInvoice(outputInvoice);
-		return new ResponseEntity(newOutputInvoice, HttpStatus.OK);
+
+	@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+	@PostMapping(path = "/outputInvoices")
+	public @ResponseBody ResponseEntity<?> saveOutputInvoice(@RequestBody AddInvoiceDto addInvoiceDto) {
+		OutputInvoice outputInvoice = outputInvoiceService.createInvoice(addInvoiceDto);
+		OutputInvoice savedInvoice = outputInvoiceService.saveOutputInvoice(outputInvoice);
+		return new ResponseEntity(savedInvoice, HttpStatus.OK);
 	}
 	
-	@DeleteMapping(path = "/outputinvoices/{outputinvoiceId}")
-	public ResponseEntity<Void> deleteOutputInvoice(@PathVariable("outputinvoiceId") Long outputinvoiceId) {
-		OutputInvoice outputInvoice = outputInvoiceService.getOutputInvoice(outputinvoiceId);
+	@DeleteMapping(path = "/outputInvoices/{id}")
+	public ResponseEntity<Void> deleteOutputInvoice(@PathVariable("id") Long id) {
+		OutputInvoice outputInvoice = outputInvoiceService.getOutputInvoice(id);
 		if(outputInvoice == null) {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}

@@ -75,6 +75,7 @@ public class PriceListController {
             for(PriceListItem item: list.getItems()){
                 PriceListResponseDto newDto = new PriceListResponseDto(list.getValidFrom(),
                         item.getPrice(),
+                        item.getArticle().getId(),
                         item.getArticle().getName(),
                         item.getArticle().getArticleGroup().getName(), item.getArticle().getCompany().getPIB());
                 listsDto.add(newDto);
@@ -91,11 +92,18 @@ public class PriceListController {
         List<Article> articles = articleService.getAllArticles();
         List<PriceListResponseDto>  listsDto = new ArrayList<>();
         for(PriceListItem item : priceList.getItems()){
-                PriceListResponseDto newDto = new PriceListResponseDto(priceList.getValidFrom(),
-                        item.getPrice(),
-                        item.getArticle().getName(),
-                        item.getArticle().getArticleGroup().getName(), item.getArticle().getCompany().getPIB());
-                listsDto.add(newDto);
+            for(Article article : articles){
+                if(article.getPriceListItem().getId() == item.getId()){
+                    PriceListResponseDto newDto = new PriceListResponseDto(priceList.getValidFrom(),
+                            item.getPrice(),
+                            article.getId(),
+                            article.getName(),
+                            item.getArticle().getArticleGroup().getName(), item.getArticle().getCompany().getPIB());
+                    listsDto.add(newDto);
+                }
+
+
+            }
 
         }
         return new ResponseEntity<List<PriceListResponseDto>>(listsDto, HttpStatus.OK);
@@ -132,7 +140,9 @@ public class PriceListController {
         Company company = null;
         List<Article> newArticles = new ArrayList<>();
         for(PriceListItem priceListItem : priceList.getItems()){
-            newArticles.add(priceListItem.getArticle());
+            if(priceListItem.getArticle() != null){
+                newArticles.add(priceListItem.getArticle());
+            }
         }
         // Date validFrom, double pdvAssessment, ArticleGroup articleGroups
             for (Article article : newArticles) {
