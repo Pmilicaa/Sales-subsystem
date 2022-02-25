@@ -7,6 +7,6 @@ export const getAllBusinessPartners = async () => {
 
 export const addBusinessPartner = async (partner) => {
   return await axios
-  .post(`${endpointBaseUrl}/businesspartners`, partner)
-  .then(res => { return res.data})
+    .post(`${endpointBaseUrl}/businesspartners`, partner)
+    .then(res => { return res.data })
 }
