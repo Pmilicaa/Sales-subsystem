@@ -12,6 +12,11 @@ export const getOutputInvoiceById = async (id) => {
   return res.data;
 }
 
+export const getOutputInvoicesByTimePeriod = async (beginning, end) => {
+  const res = await axios.get(`${baseUrl}/outputInvoices/timePeriod/${beginning}/${end}`)
+  return res.data
+}
+
 export const addOutputInvoice = async (article) => {
   return await axios
     .post(`${baseUrl}/outputInvoices`,

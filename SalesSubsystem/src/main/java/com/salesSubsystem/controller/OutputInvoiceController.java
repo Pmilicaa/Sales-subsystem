@@ -58,6 +58,13 @@ public class OutputInvoiceController {
 	}
 
 	@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+	@GetMapping(path = "/outputInvoices/timePeriod/{beginning}/{ending}")
+	public @ResponseBody ResponseEntity<?> getOutputInvoicesByTimePeriod(@PathVariable("beginning") Long beginning, @PathVariable("ending") Long ending){
+		List<OutputInvoice> outputInvoices = outputInvoiceService.findByTimePeriod(beginning, ending);
+		return new ResponseEntity<>(outputInvoices, HttpStatus.OK);
+	}
+
+	@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 	@PostMapping(path = "/outputInvoices")
 	public @ResponseBody ResponseEntity<?> saveOutputInvoice(@RequestBody AddInvoiceDto addInvoiceDto) {
 		OutputInvoice outputInvoice = outputInvoiceService.createInvoice(addInvoiceDto);

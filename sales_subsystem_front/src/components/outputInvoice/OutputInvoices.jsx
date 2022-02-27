@@ -1,11 +1,11 @@
 import { Table } from "react-bootstrap";
 import OutputInvoice from "./OutputInvoice";
 import React from 'react';
-import AddOutputInvoice from "./AddOutputInvoice";
 
-const OutputInvoices = ({ outputInvoices, invoice, articles, priceLists }) => {
-  return (<>
-    {outputInvoices && <><h1 className="center">Output invoices</h1>
+const OutputInvoices = ({ outputInvoices }) => {
+  return (
+    <>
+      <h1 className="center">Output invoices</h1>
       <Table className="table" striped bordered hover>
         <thead className="thead-dark">
           <tr>
@@ -17,9 +17,11 @@ const OutputInvoices = ({ outputInvoices, invoice, articles, priceLists }) => {
             <th scope="col">Options</th>
           </tr>
         </thead>
-        {outputInvoices.map((invoice) => <OutputInvoice invoice={invoice} />)}
-      </Table> </>}
-    <AddOutputInvoice priceLists={priceLists} />
-  </>);
+        <tbody>
+          {outputInvoices.map((invoice) => <OutputInvoice invoice={invoice} />)}
+        </tbody>
+      </Table> 
+    </>
+  );
 };
 export default OutputInvoices;

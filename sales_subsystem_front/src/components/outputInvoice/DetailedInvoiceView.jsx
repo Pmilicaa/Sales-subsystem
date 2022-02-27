@@ -5,7 +5,7 @@ const DetailedInvoiceView = ({ invoice }) => {
   return (
     <>
       { invoice == undefined ? <p>Loading</p> : <p>{invoice.id}</p>}
-      <Table className="mt-3" striped bordered hover>
+      <Table className="mt-3" striped hover>
         <thead>
           <tr>
             <th>Article</th>
@@ -26,11 +26,11 @@ const DetailedInvoiceView = ({ invoice }) => {
             </tr>
           )}
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>{invoice.totalPayment}</td>
+            <td style={{borderStyle: "none"}}></td>
+            <td style={{borderStyle: "none"}}></td>
+            <td style={{borderStyle: "none"}}></td>
+            <td style={{borderStyle: "none"}}></td>
+            <td style={{borderStyle: "none"}}>{invoice.totalPayment}</td>
           </tr>
         </tbody>
       </Table>

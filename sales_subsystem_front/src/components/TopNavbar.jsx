@@ -12,7 +12,7 @@ const TopNavbar = () => {
             <Nav.Link href="/units">Units of measure</Nav.Link>
             <Nav.Link href="/priceList">Price list</Nav.Link>
             <Nav.Link href="/outputInvoices">Output invoices</Nav.Link>
-
+            <Nav.Link href="/invoicesBook">Invoices book</Nav.Link>
           </Nav>
       </Container>
     </Navbar>

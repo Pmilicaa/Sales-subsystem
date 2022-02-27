@@ -6,16 +6,14 @@ const OutputInvoice = ({ invoice }) => {
   const navigate = useNavigate();
   
   return (
-    <tbody>
-      <tr>
-        <td>{invoice.numberAccount}</td>
-        <td>{invoice.totalBase}</td>
-        <td>{invoice.totalPDV}</td>
-        <td>{invoice.totalPayment}</td>
-        <td>{formatMillis(invoice.releaseDate)}</td>
-        <td><Button onClick={()=> navigate(`/invoiceDetails/${invoice.id}`)}>View invoice details</Button></td>
-      </tr>
-    </tbody>
+    <tr>
+      <td>{invoice.numberAccount}</td>
+      <td>{invoice.totalBase}</td>
+      <td>{invoice.totalPDV}</td>
+      <td>{invoice.totalPayment}</td>
+      <td>{formatMillis(invoice.releaseDate)}</td>
+      <td><Button onClick={()=> navigate(`/invoiceDetails/${invoice.id}`)}>View invoice details</Button></td>
+    </tr>
   );
 }
 export default OutputInvoice;

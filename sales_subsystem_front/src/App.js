@@ -20,6 +20,8 @@ import { getAllInvoices } from './services/InvoiceService';
 import { getAllOutputInvoices } from './services/OutputInvoicesService';
 import OutputInvoices from './components/outputInvoice/OutputInvoices';
 import DetailedInvoicePage from './pages/DetailedInvoicePage';
+import InvoicesBook from './pages/InvoicesBook';
+import OutputInvoicesPage from './pages/OutputInvoicesPage';
 
 function App() {
   const [articles, setArticles] = useState([]);
@@ -49,8 +51,9 @@ function App() {
             <Route path="/articles" element={<Articles articles={articles} articleGroups={articleGroups} companies={companies} />} />
             <Route path="/companies" element={<CompanyPage companies={companies} />} />
             <Route path="/business" element={<BusinessPartnerPage companies={companies} />} />
-            <Route path="/outputInvoices" element={<OutputInvoices outputInvoices={outputInvoices} invoices={invoices} articles={articles} priceLists={priceLists} />} />
+            <Route path="/outputInvoices" element={<OutputInvoicesPage outputInvoices={outputInvoices} priceLists={priceLists} />} />
             <Route path="/invoiceDetails/:id" element={<DetailedInvoicePage />} />
+            <Route path="/invoicesBook" element={<InvoicesBook />} />
             <Route path="/addPriceList" element={<AddPriceList articles={articles} articleGroups={articleGroups} companies={companies} />} />
             <Route path="/priceList" element={<PriceLists priceLists={priceLists} articles={articles} />} />
             <Route path="/addArticleGroup" element={<AddArticleGroup articleGroups={articleGroups} companies={companies} />} />

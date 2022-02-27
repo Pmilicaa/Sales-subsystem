@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import com.salesSubsystem.dto.AddInvoiceDto;
 import com.salesSubsystem.dto.AddInvoiceItemDto;
-import com.salesSubsystem.dto.ArticleInvoiceItemDto;
 import com.salesSubsystem.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +39,10 @@ public class OutputInvoiceService {
 
     public OutputInvoice getOutputInvoice(Long id) {
         return outputInvoiceRepository.findById(id).get();
+    }
+
+    public List<OutputInvoice> findByTimePeriod(Long beginning, Long ending){
+        return outputInvoiceRepository.findByReleaseDateBetween(beginning, ending);
     }
 
     public OutputInvoice saveOutputInvoice(OutputInvoice outputInvoice) {
