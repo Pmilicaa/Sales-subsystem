@@ -112,7 +112,6 @@ public class PriceListController {
     @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     @PostMapping(path="/priceLists")
     public ResponseEntity<PriceList> addPriceList(@RequestBody PriceListRequestDto priceListDto){
-        System.out.print(priceListDto.toString());
         List<PriceListItem> lists = new ArrayList<>();
         Company company = null;
         for(ArticlePriceDto articlePriceDto : priceListDto.getArticlePriceList()){
@@ -128,12 +127,10 @@ public class PriceListController {
         priceListService.savePriceList(priceList);
         return new ResponseEntity<PriceList>(priceList,HttpStatus.OK);
     }
-//	public Article(String name, String description, UnitOfMeasure unitOfMeasure, PriceListItem priceListItem,
-//	ArticleGroup articleGroup, List<InvoiceItem> invoiceItems, Company company) {
+
     @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     @PostMapping(path="/priceLists/pdv")
     public ResponseEntity<PriceList> copyPriceList(@RequestBody CopyPriceListDto copyPriceListDto){
-        System.out.print(copyPriceListDto);
         PriceList priceList = priceListService.getPriceList(copyPriceListDto.getPriceListId());
         List<PriceListItem> lists = new ArrayList<>();
         List<Article> articles = articleService.getAllArticles();

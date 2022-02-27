@@ -1,6 +1,10 @@
 package com.salesSubsystem.controller;
 
 import com.salesSubsystem.dto.AddInvoiceDto;
+import com.salesSubsystem.dto.ArticleInvoiceItemDto;
+import com.salesSubsystem.dto.OutputInvoiceDto;
+import com.salesSubsystem.model.Article;
+import com.salesSubsystem.model.InvoiceItem;
 import com.salesSubsystem.model.OutputInvoice;
 import com.salesSubsystem.service.ArticleService;
 import com.salesSubsystem.service.InvoiceItemService;
@@ -10,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class OutputInvoiceController {
@@ -31,6 +38,7 @@ public class OutputInvoiceController {
 	public @ResponseBody ResponseEntity<?> getAllOutputInvoices() {
 		return new ResponseEntity(outputInvoiceService.getAllOutputInvoices(), HttpStatus.OK);
 	}
+
 	@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 	@GetMapping(path = "/outputInvoices/{id}")
 	public ResponseEntity<?> getOutputInvoice(@PathVariable("id") Long id) {
@@ -38,7 +46,15 @@ public class OutputInvoiceController {
 		if(outputInvoice == null) {
 			return new ResponseEntity<OutputInvoice>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity(outputInvoice, HttpStatus.OK);
+		List<ArticleInvoiceItemDto> invoiceItemDtoList = new ArrayList<>();
+		for (InvoiceItem invoiceItem: outputInvoice.getInvoiceItems()) {
+			Article article = articleService.findByInvoiceItem(invoiceItem);
+			ArticleInvoiceItemDto articleInvoice = new ArticleInvoiceItemDto(article, invoiceItem);
+			invoiceItemDtoList.add(articleInvoice);
+		}
+
+		OutputInvoiceDto outputInvoiceDto = new OutputInvoiceDto(outputInvoice, invoiceItemDtoList);
+		return new ResponseEntity(outputInvoiceDto, HttpStatus.OK);
 	}
 
 	@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)

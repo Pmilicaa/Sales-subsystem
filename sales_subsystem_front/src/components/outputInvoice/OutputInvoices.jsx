@@ -14,6 +14,7 @@ const OutputInvoices = ({ outputInvoices, invoice, articles, priceLists }) => {
             <th scope="col">Total pdv</th>
             <th scope="col">Total payment</th>
             <th scope="col">Release date</th>
+            <th scope="col">Options</th>
           </tr>
         </thead>
         {outputInvoices.map((invoice) => <OutputInvoice invoice={invoice} />)}

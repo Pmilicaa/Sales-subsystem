@@ -65,10 +65,6 @@ public class ArticleController {
         PriceListItem priceListItem = new PriceListItem(articleDto.getPrice(),null);
         List<PriceList> priceLists = company.getPriceLists();
         priceLists.sort(Comparator.comparingLong(PriceList::getValidFrom));
-        for (PriceList pricelisto: priceLists) {
-            System.out.print(pricelisto.getValidFrom());
-        }
-       // PriceListItem newItem = priceListItemService.savePriceListItem(priceListItem);
         Article article = new Article(articleDto.getName(), articleDto.getDescription(), unit, priceListItem, articleGroup, new ArrayList<>(), company);
         Article newArticle = articleRepository.save(article);
         priceListItem.setArticle(newArticle);

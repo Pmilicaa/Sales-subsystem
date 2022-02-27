@@ -1,14 +1,12 @@
 package com.salesSubsystem.service;
 
 import com.salesSubsystem.model.Article;
-import com.salesSubsystem.model.ArticleGroup;
-import com.salesSubsystem.model.PriceList;
+import com.salesSubsystem.model.InvoiceItem;
 import com.salesSubsystem.repository.ArticleRepository;
 import com.salesSubsystem.repository.PriceListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,5 +34,10 @@ public class ArticleService {
     public Article logicalDeleteArticle(Article article){
         article.setActive(false);
         return articleRepository.save(article);
+    }
+
+    public Article findByInvoiceItem(InvoiceItem invoiceItem){
+        System.out.println(invoiceItem.getId());
+        return articleRepository.findByInvoiceItems_Id( (Long) invoiceItem.getId());
     }
 }

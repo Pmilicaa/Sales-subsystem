@@ -60,7 +60,6 @@ public class PriceListItemController {
         Article article =articleService.getArticle(itemDto.getId());
         PriceListItem item = new PriceListItem(itemDto.getPrice(), article);
         PriceListItem savedItem = priceListItemService.savePriceListItem(item);
-        System.out.print(savedItem);
         article.setPriceListItem(savedItem);
         articleService.saveArticle(article);
         return new ResponseEntity<PriceListItem>(savedItem, HttpStatus.OK);

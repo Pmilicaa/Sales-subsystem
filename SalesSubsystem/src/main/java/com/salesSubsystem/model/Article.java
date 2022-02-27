@@ -14,7 +14,7 @@ public class Article {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id")
-	private long id;
+	private Long id;
 
 	@Column(name="name")
 	private String name;
@@ -53,7 +53,7 @@ public class Article {
 	@Column(name="active")
 	private boolean active;
 
-	public Article(long id, String name, String description, UnitOfMeasure unitOfMeasure, PriceListItem priceListItem, ArticleGroup articleGroup, List<InvoiceItem> invoiceItems, Company company, boolean active) {
+	public Article(Long id, String name, String description, UnitOfMeasure unitOfMeasure, PriceListItem priceListItem, ArticleGroup articleGroup, List<InvoiceItem> invoiceItems, Company company, boolean active) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -80,10 +80,10 @@ public class Article {
 		super();
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {

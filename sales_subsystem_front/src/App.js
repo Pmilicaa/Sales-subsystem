@@ -17,8 +17,9 @@ import CompanyPage from './pages/CompanyPage';
 import PriceLists from './components/priceList/PriceLists';
 import AddPriceList from './components/priceList/AddPriceList';
 import { getAllInvoices } from './services/InvoiceService';
-import { getAllOutputInvoices } from './services/OutputInvoices';
+import { getAllOutputInvoices } from './services/OutputInvoicesService';
 import OutputInvoices from './components/outputInvoice/OutputInvoices';
+import DetailedInvoicePage from './pages/DetailedInvoicePage';
 
 function App() {
   const [articles, setArticles] = useState([]);
@@ -49,6 +50,7 @@ function App() {
             <Route path="/companies" element={<CompanyPage companies={companies} />} />
             <Route path="/business" element={<BusinessPartnerPage companies={companies} />} />
             <Route path="/outputInvoices" element={<OutputInvoices outputInvoices={outputInvoices} invoices={invoices} articles={articles} priceLists={priceLists} />} />
+            <Route path="/invoiceDetails/:id" element={<DetailedInvoicePage />} />
             <Route path="/addPriceList" element={<AddPriceList articles={articles} articleGroups={articleGroups} companies={companies} />} />
             <Route path="/priceList" element={<PriceLists priceLists={priceLists} articles={articles} />} />
             <Route path="/addArticleGroup" element={<AddArticleGroup articleGroups={articleGroups} companies={companies} />} />

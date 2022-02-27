@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Col, Form, ListGroup, Row, Table } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { getAllBusinessPartners } from "../../services/BusinessPartnerService";
-import { addOutputInvoice } from "../../services/OutputInvoices";
+import { addOutputInvoice } from "../../services/OutputInvoicesService";
 import { getPriceList } from "../../services/PriceListService";
 import InvoiceItemPrice from "../invoiceItem/InvoiceItemPrice";
 import { formatMillis } from "../../utils/time";
