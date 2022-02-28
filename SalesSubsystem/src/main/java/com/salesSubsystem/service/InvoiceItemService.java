@@ -48,8 +48,8 @@ public class InvoiceItemService {
 	}
 
 	private double calculateTotal(double price, int amount, double discount, double pdv){
-		double discountValue = discount/100;
-		double priceWithPDV=pdv/100;
+		double discountValue = price * discount/100;
+		double priceWithPDV=price * pdv/100;
 		if(discount == 0){
 			discountValue = 0;
 		}
